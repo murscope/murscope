@@ -10,7 +10,7 @@
     "scripts/checks/a_note_adapter_sends_only_what_the_disclosure_declares.py": "ba73b2844e23b5e7f4911d7eff1d4cd5c954ca4caadf0d8d0b00ec7e2ad15a5f",
     "scripts/checks/a_read_window_and_its_permits_stay_paired.py": "ed96ed690cdb9a6f6eee8565e9acc5a10a21ec99d8f92b96fe5eadbb2770ac2e",
     "scripts/checks/activity_source_reads_mtime_only.py": "03c9f016dbcaf8452d780ae0ab1df5555e73112be109572336df4e23b91f461c",
-    "scripts/checks/all_changes_via_pr.py": "5b26838f70ba33dafd606acc1424be2e36c8507bc406b87ba82bd26dad9ed383",
+    "scripts/checks/all_changes_via_pr.py": "ec86b211496dc80683257f6cdd086bc9dc574a94a5b8b49941bb9f02c58f56ea",
     "scripts/checks/all_rules_have_checks.py": "6b9cd0a165dcd38159498adbaf55956e0ccf0d6fe5a2e9dbbb430957f41dd390",
     "scripts/checks/an_untested_provider_is_reported_as_untested.py": "5735bc7d223ab1cc7fe87b0f5f7a424d18a7eb5bf293ac5639b2cad10e45e5f0",
     "scripts/checks/blocker_extraction_stays_precise.py": "ee2aacd384fdd9ec63a8c12dbdf9178aea83a8d498926999ac8bd8447ee03957",
@@ -82,7 +82,7 @@
     "scripts/checks/the_timer_collects_and_cannot_send.py": "228f2589d505dede66adb1dc254dbb3be96e786082d43e04088e926c14bdb498",
     "scripts/checks/zero_telemetry.py": "52c39cc2e05e818f757a136887b34df96de29696fb0b0b4078ae81366c79523a",
     "scripts/make_toy_repos.py": "d7d9a3ded104e2f192237b4a6bf50dec30ee1724706d2d69f57af61fa1e0a1ce",
-    "scripts/public_tree.py": "67350ca75e50eff04eda59a3ce0b738e6893ce0e941dddc139c409c6690cf39c",
+    "scripts/public_tree.py": "2bc1b7f3e5861e34dafdcb5fb994211d68caf48b89ad60e94507b9c9f621070c",
     "scripts/run_checks.py": "59704c9974ed0b567c89d683d4c94433dd5fa53ae651626a092e09a41e824082"
   },
   "fixture_cases": {

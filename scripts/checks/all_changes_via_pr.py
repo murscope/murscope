@@ -185,6 +185,73 @@ def detect(payload):
 
 
 def main():
+    # **Rule 2 is about work landing on `main`, and nothing lands in a
+    # derivation.** What arrives here is extraction output, and the review
+    # this rule exists to guarantee happened in the repository this tree
+    # was derived from, before the commit that was extracted. So the mode
+    # is named and the assertion is not made - and it is not skipped,
+    # because a skipped check and a passed one are the same green in a
+    # summary, which is a distinction this line settled long ago.
+    #
+    # **What that costs is stated rather than left to be found.** Between
+    # the founding commit and this branch, this check was the only thing
+    # standing between this `main` and a hand edit pushed straight to it -
+    # accidentally, and only from the second commit onward. Nothing here
+    # measures the claim PUBLICATION.md makes, that everything in this
+    # tree arrived by derivation. The property that should hold is that
+    # every commit is an extraction output, and **this tree cannot check
+    # that about itself**: the evidence is in a repository it does not
+    # have, so the assertion belongs where that repository is.
+    import importlib.util
+    spec_path = REPO_ROOT / "scripts" / "public_tree.py"
+    spec = None
+    if spec_path.is_file():
+        loader = importlib.util.spec_from_file_location(
+            "murscope_public_tree_pr", str(spec_path))
+        module = importlib.util.module_from_spec(loader)
+        try:
+            loader.loader.exec_module(module)
+            spec = module
+        except BaseException:
+            spec = None
+    if spec is None:
+        print("scripts/public_tree.py is missing or does not "
+              "import, so this check cannot tell which tree it "
+              "is in - and the two modes are opposite.")
+        print("FAILED: Rule 2's check needs to know which tree "
+              "it is in.")
+        return 1
+    if not any((REPO_ROOT / prefix.rstrip("/")).is_dir()
+               for prefix, _ in spec.EXCLUDED):
+        carrying = "a squash subject (#1)"
+        bare = "a subject naming no pull request"
+        if not REFERENCE.search(carrying) or REFERENCE.search(bare):
+            print("the reference matcher cannot tell a subject "
+                  "carrying `(#N)` from one that does not, so "
+                  "its silence would mean nothing (DP87).")
+            print("FAILED: Rule 2's check cannot prove its own "
+                  "matcher.")
+            return 1
+        print("OK: this is the derivation, and no work lands "
+              "here - what arrives is extraction output, so no "
+              "commit on this branch was asserted to carry a "
+              "pull request reference.")
+        print("    The review this rule guarantees happened "
+              "before extraction, in the repository this tree "
+              "was derived from. A pull request opened and "
+              "merged here would have one participant, and a "
+              "review-shaped thing with no reviewer in it is "
+              "what this rule's own history warns about - its "
+              "first enforcement was a template checkbox, "
+              "ticked every time and wrong the whole time.")
+        print("    What is therefore not measured anywhere: "
+              "that every commit here is an extraction output, "
+              "which is what PUBLICATION.md claims. This tree "
+              "cannot settle it - the evidence is the source "
+              "repository, which this one does not have. The "
+              "matcher was still proved on a subject carrying "
+              "a reference and one that does not.")
+        return 0
     refs = main_refs()
     if not refs:
         print("neither %s resolves here, so there is no main to inspect."
