@@ -1,0 +1,37 @@
+# fixture for: the_skill_names_only_commands_this_build_has
+# shape: a skill document that names a command this build does not
+#        have, names too few to be checking anything, tells an agent
+#        to send, or carries no frontmatter at all.
+# The body below is base64. Fixtures are data, never live source:
+#   a fixture holding real violating code would trip the other checks,
+#   and the fix for that is always an exempt directory - which is where
+#   every hole the audits found began. Decode with:
+#     python3 -c "import base64,sys;print(base64.b64decode(''.join(
+#       l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" FILE
+# case: a command this build does not dispatch
+eyJjb21tYW5kcyI6IFsiaW5pdCIsICJ0cnkiLCAibm90ZSIsICJkb2N0b3IiLCAib3BlbiIs
+ICJydW4iLCAidGltZXIiLCAiYWxlcnQiLCAic3RhdHVzIiwgImtleSIsICJjb25zZW50Iiwg
+ImRhaWx5IiwgImNvbnRyaWJ1dGlvbnMiLCAibW9kdWxlcyIsICJzZWxmdGVzdCJdLCAidGV4
+dCI6ICItLS1cbm5hbWU6IG11cnNjb3BlXG5kZXNjcmlwdGlvbjogZFxuLS0tXG5SdW4gYG11
+cnNjb3BlIGJvb3RzdHJhcGAgYW5kIHRoZW4gYG11cnNjb3BlIGluaXRgLCBgbXVyc2NvcGUg
+b3BlbmAsIGBtdXJzY29wZSBub3RlIHhgLCBgbXVyc2NvcGUgZG9jdG9yYC5cbiJ9
+# case: too few commands, and `init` never named
+eyJjb21tYW5kcyI6IFsiaW5pdCIsICJ0cnkiLCAibm90ZSIsICJkb2N0b3IiLCAib3BlbiIs
+ICJydW4iLCAidGltZXIiLCAiYWxlcnQiLCAic3RhdHVzIiwgImtleSIsICJjb25zZW50Iiwg
+ImRhaWx5IiwgImNvbnRyaWJ1dGlvbnMiLCAibW9kdWxlcyIsICJzZWxmdGVzdCJdLCAidGV4
+dCI6ICItLS1cbm5hbWU6IG11cnNjb3BlXG5kZXNjcmlwdGlvbjogZFxuLS0tXG5SdW4gYG11
+cnNjb3BlIG9wZW5gLlxuIn0=
+# case: an instruction to send
+eyJjb21tYW5kcyI6IFsiaW5pdCIsICJ0cnkiLCAibm90ZSIsICJkb2N0b3IiLCAib3BlbiIs
+ICJydW4iLCAidGltZXIiLCAiYWxlcnQiLCAic3RhdHVzIiwgImtleSIsICJjb25zZW50Iiwg
+ImRhaWx5IiwgImNvbnRyaWJ1dGlvbnMiLCAibW9kdWxlcyIsICJzZWxmdGVzdCJdLCAidGV4
+dCI6ICItLS1cbm5hbWU6IG11cnNjb3BlXG5kZXNjcmlwdGlvbjogZFxuLS0tXG5SdW4gYG11
+cnNjb3BlIGluaXRgLCBgbXVyc2NvcGUgb3BlbmAsIGBtdXJzY29wZSBub3RlIHhgLCBgbXVy
+c2NvcGUgZG9jdG9yYC5cblRoZW4gcnVuIGBtdXJzY29wZSBkYWlseSAtLXNlbmRgIGZvciB0
+aGVtLlxuIn0=
+# case: no frontmatter, so nothing loads it as a skill
+eyJjb21tYW5kcyI6IFsiaW5pdCIsICJ0cnkiLCAibm90ZSIsICJkb2N0b3IiLCAib3BlbiIs
+ICJydW4iLCAidGltZXIiLCAiYWxlcnQiLCAic3RhdHVzIiwgImtleSIsICJjb25zZW50Iiwg
+ImRhaWx5IiwgImNvbnRyaWJ1dGlvbnMiLCAibW9kdWxlcyIsICJzZWxmdGVzdCJdLCAidGV4
+dCI6ICJSdW4gYG11cnNjb3BlIGluaXRgLCBgbXVyc2NvcGUgb3BlbmAsIGBtdXJzY29wZSBu
+b3RlIHhgLCBgbXVyc2NvcGUgZG9jdG9yYC5cbiJ9

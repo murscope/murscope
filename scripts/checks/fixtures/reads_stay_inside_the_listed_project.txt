@@ -1,0 +1,9 @@
+# fixture for: reads_stay_inside_the_listed_project
+# shape: a caller-supplied name joined onto a root and read with no containment test
+# The body below is base64. Fixtures are data, never live source:
+#   a fixture holding real violating code would trip the other checks,
+#   and the fix for that is always an exempt directory - which is where
+#   every hole the audits found began. Decode with:
+#   python3 -c "import base64,sys;print(base64.b64decode(''.join(l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" <file>
+aW1wb3J0IHBhdGhsaWIKCgpkZWYgcmVhZF9sZWRnZXIocm9vdCwgcmVsKToKICAgIHBhdGggPSBy
+b290IC8gcmVsCiAgICByZXR1cm4gb3BlbihzdHIocGF0aCkpLnJlYWQoKQo=

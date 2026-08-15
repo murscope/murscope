@@ -1,0 +1,18 @@
+{
+  "locale": "fr",
+  "markers": [
+    "bloque",
+    "bloquee",
+    "en attente de",
+    "en attente",
+    "en pause",
+    "decision requise",
+    "decision en attente"
+  ],
+  "note": "The French pack ships now; the French UI locale is M4. A pack reads someone's ledger, it does not render the page.",
+  "owner_markers": [
+    "decision requise",
+    "decision en attente",
+    "en attente de validation"
+  ]
+}

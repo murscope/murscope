@@ -1,0 +1,22 @@
+# fixture for: providers_run_only_when_configuration_names_them
+# Cases below, one per documented failure shape. Each is base64 under its
+# own `# case:` marker, and Rule 1 requires every one to fire and every
+# reporting branch of detect() to be reached by at least one of them.
+# Fixtures are data, never live source: a fixture holding real violating
+# code would trip the other checks, and the fix for that is always an
+# exempt directory - which is where every hole the audits found began.
+#   python3 -c "import base64,sys;print(base64.b64decode(''.join(l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" <file>
+# case: a loader that imports a provider statically
+ZnJvbSBfX2Z1dHVyZV9fIGltcG9ydCBhbm5vdGF0aW9ucwpmcm9tIC4gaW1wb3J0IG5vb3AKCgpk
+ZWYgbG9hZChuYW1lcyk6CiAgICByZXR1cm4gbGlzdChuYW1lcyBvciAoKSksIFtdCg==
+# case: a dynamic import at module scope
+aW1wb3J0IGltcG9ydGxpYgoKaW1wb3J0bGliLmltcG9ydF9tb2R1bGUoIm11cnNjb3BlLnByb3Zp
+ZGVycy5ub29wIikKCgpkZWYgbG9hZChuYW1lcyk6CiAgICByZXR1cm4gW10sIFtdCg==
+# case: a dynamic import with no membership test
+aW1wb3J0IGltcG9ydGxpYgoKCmRlZiBsb2FkKG5hbWVzKToKICAgIGxvYWRlZCA9IFtdCiAgICBm
+b3IgbmFtZSBpbiBuYW1lcyBvciAoKToKICAgICAgICBpbXBvcnRsaWIuaW1wb3J0X21vZHVsZSgi
+bXVyc2NvcGUucHJvdmlkZXJzLiIgKyBuYW1lKQogICAgICAgIGxvYWRlZC5hcHBlbmQobmFtZSkK
+ICAgIHJldHVybiBsb2FkZWQsIFtdCg==
+# case: a provider imported by absolute path
+aW1wb3J0IG11cnNjb3BlLnByb3ZpZGVycy5ub29wCgoKZGVmIGxvYWQobmFtZXMpOgogICAgcmV0
+dXJuIGxpc3QobmFtZXMgb3IgKCkpLCBbXQo=

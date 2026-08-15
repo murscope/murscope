@@ -1,0 +1,25 @@
+# Rule 37's own violating shapes. Every name here is fabricated:
+# the seed travels in the payload, so this fixture never carries a
+# real one - which is the point of the rule it tests.
+# case: the whole name, as prose
+c2VlZDogQWRhIExvdmVsYWNlCi0tCiIiIk1lYXN1cmVkIG9uIHJlYWwgZGF0YTogdGhlIGxl
+ZGdlciBzYWlkIGBXYWl0aW5nIG9uIEFkYSBMb3ZlbGFjZWAuIiIiCg==
+# case: the same name run together, lower case, in a comment
+c2VlZDogQWRhIExvdmVsYWNlCi0tCiMgaGFuZGxlOiBhZGFsb3ZlbGFjZQpWQUxVRSA9IDEK
+# case: family name first, which a substring test on one order would miss
+c2VlZDogQWRhIExvdmVsYWNlCi0tCiAgICBzYWlkIGBXYWl0aW5nIG9uIExvdmVsYWNlIEFk
+YWAgaW4gdGhlIGhlYWRlci4K
+# case: upper case and hyphenated
+c2VlZDogQWRhIExvdmVsYWNlCi0tCkFVVEhPUiA9ICdMT1ZFTEFDRS1BREEnCg==
+# case: dotted, the way a name reaches an identifier
+c2VlZDogQWRhIExvdmVsYWNlCi0tCm93bmVyID0gY29uZmlnWydhZGEubG92ZWxhY2UnXQo=
+# case: underscored, the way a name reaches a path
+c2VlZDogQWRhIExvdmVsYWNlCi0tCkhPTUUgPSBiYXNlIC8gJ2FkYV9sb3ZlbGFjZScgLyAn
+bm90ZXMubWQnCg==
+# case: a second person, seeded from authorship rather than the licence
+c2VlZDogQWRhIExvdmVsYWNlCnNlZWQ6IEdyYWNlIEhvcHBlcgotLQojIHJldmlld2VkIGJ5
+IEdyYWNlIEhvcHBlcgo=
+# case: a seed of one token, which would generate a common word
+c2VlZDogQWRhCi0tCm5vdGhpbmcgdG8gZmluZCBoZXJlCg==
+# case: no seed at all, so the needle is empty
+dGhlcmUgaXMgbm8gc2VlZCBsaW5lIGFib3ZlIHRoaXMgdGV4dAo=

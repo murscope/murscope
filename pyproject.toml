@@ -1,0 +1,117 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "murscope"
+description = "Read-only portfolio observability: scan your projects, get one static dashboard."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+keywords = ["portfolio", "observability", "dashboard", "local-first", "offline"]
+dynamic = ["version"]
+
+# Zero runtime dependencies, deliberately and permanently (ADR-0001).
+# A local-first tool that asks for nothing is a claim a reader can check.
+dependencies = []
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development",
+]
+
+# The project page's only link, and one rather than three deliberately.
+# A URL on a release is permanent - 0.1.0 cannot be re-uploaded - so each
+# one is a claim that has to keep being true. `Source` would be
+# byte-identical to this, and `Issues` depends on a repository setting
+# nobody has ruled on; a dead `/issues` link is the exact shape this
+# round exists to keep off the page. One URL that is right beats three of
+# which two are guesses.
+[project.urls]
+Homepage = "https://github.com/murscope/murscope"
+
+[project.optional-dependencies]
+# The system keychain (DP18). Declared empty until M3's second stage,
+# because pinning a package before anything imports it would be a promise
+# with no code behind it; `murscope.keys` now imports it, so the pin is
+# the code's own requirement rather than an intention.
+#
+# Keys still start as 0600 files under MURSCOPE_HOME, which needs nothing
+# at all, and README states the security difference between the two
+# plainly rather than implying the file is as good. The choice is
+# `backend` under `[keys]`, and there is no fallback between them: a user
+# who asked for the keychain and silently got a file would have been told
+# nothing.
+keyring = ["keyring>=23"]
+
+# The network layer (DP88). This is the load-bearing line of the whole
+# arrangement, and what it does is *not* switch a feature on - it pulls in
+# a second distribution whose files are otherwise not on the user's disk
+# at all.
+#
+# That distinction is the entire ruling. A provider gated on a config key
+# would make promise two mean "off by default", which is the reading the
+# promise exists to refuse. A provider that lives in a separate wheel
+# makes the promise measurable instead: `pip list` answers it, and a base
+# install has no module to name, disable, or audit.
+#
+# Pinned to the exact version rather than left open. The two
+# distributions are one product cut in half along a boundary, not a
+# library and a plugin, and Rule 13b asserts that this pin still matches
+# murscope.__version__ and the extras distribution's own version - so the
+# halves cannot drift apart quietly.
+ai = ["murscope-ai==0.1.0"]
+
+[project.scripts]
+murscope = "murscope.cli:main"
+# A second console script, and the reason is DP124 rather than
+# convenience. A scheduler's job description is a string in a file, and
+# `murscope run` would put an argv dispatcher one word away from `daily
+# --send` in a place nobody re-reads. `murscope-timer` takes no arguments
+# and reaches no transport, and Rule 26's check is what keeps that true.
+murscope-timer = "murscope.timer:main"
+# A third console script, and DP125 rather than convenience again. An
+# alert may leave the machine and the collecting job may not, so they
+# cannot be one entry point: one call graph could not carry both rules.
+# `murscope-alert` takes no arguments and Rule 27 walks it - it may reach
+# the alert's transport and no other payload's.
+murscope-alert = "murscope.alert:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "murscope.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["murscope*"]
+
+# The board template and the locale files are the product, not extras:
+# without them `murscope run` writes a page with no styling and every
+# string rendered as a missing-key marker. They ship inside the package
+# so that an upgrade replaces them wholesale and MURSCOPE_HOME is never
+# touched (DP4).
+[tool.setuptools.package-data]
+murscope = [
+    "templates/*.html",
+    "i18n/locales/*.json",
+    "i18n/TRANSLATION_STATUS.md",
+    # The marker packs and the selftest fixtures are product, not test
+    # scaffolding. Without the packs the state layer resolves an empty
+    # vocabulary and every project silently reads as "nothing to flag";
+    # without the fixtures `murscope selftest` cannot run at all. Both
+    # were missing from the first wheel and both were caught by B5 -
+    # which is the acceptance criterion earning its place.
+    "markers/*.json",
+    "fixtures/*.json",
+    # The canary project selftest points a sensitive entry at (DP65). It
+    # ships for the same reason the fixtures do: the assertion runs on the
+    # user's machine, against the build they installed. Without it the
+    # selftest says so rather than passing quietly - which is how this
+    # omission was found - but a check that cannot run is not a check.
+    "fixtures/canary/*.md",
+]

@@ -1,0 +1,17 @@
+# fixture for: sealed_directories_stay_sealed
+# Cases below, one per documented failure shape. Each is base64 under its
+# own `# case:` marker, and Rule 1 requires every one to fire and every
+# reporting branch of detect() to be reached by at least one of them.
+# Fixtures are data, never live source: a fixture holding real violating
+# code would trip the other checks, and the fix for that is always an
+# exempt directory - which is where every hole the audits found began.
+#   python3 -c "import base64,sys;print(base64.b64decode(''.join(l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" <file>
+# case: an unpruned walk
+aW1wb3J0IG9zCgoKZGVmIHZpc2l0KHJvb3QpOgogICAgcmV0dXJuIFtkIGZvciBkLCBfcywgX2Yg
+aW4gb3Mud2FsayhzdHIocm9vdCkpXQo=
+# case: rglob on a caller-supplied path
+ZGVmIHZpc2l0KHJvb3QpOgogICAgcmV0dXJuIGxpc3Qocm9vdC5yZ2xvYigiKi5tZCIpKQo=
+# case: a mutable exclusion table
+REVGQVVMVF9TRUFMRURfRElSUyA9IFsiLmdpdCIsICJub2RlX21vZHVsZXMiXQo=
+# case: an empty exclusion table
+REVGQVVMVF9TRUFMRURfRElSUyA9IGZyb3plbnNldCgoKSkK

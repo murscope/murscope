@@ -1,0 +1,18 @@
+# fixture for: the_timer_collects_and_cannot_send
+# Cases below, one per documented failure shape. Each is base64 under its
+# own `# case:` marker, and Rule 1 requires every one to fire and every
+# reporting branch of detect() to be reached by at least one of them.
+# Fixtures are data, never live source: a fixture holding real violating
+# code would trip the other checks, and the fix for that is always an
+# exempt directory - which is where every hole the audits found began.
+#   python3 -c "import base64,sys;print(base64.b64decode(''.join(l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" <file>
+# case: the registry's writer lookup, reached through the module
+ZnJvbSAuIGltcG9ydCBjbGksIHJlZ2lzdHJ5CgoKZGVmIG1haW4oKToKICAgIGZvciB3cml0ZXIg
+aW4gcmVnaXN0cnkud3JpdGVycygpOgogICAgICAgIHBhc3MKICAgIHJldHVybiBjbGkucnVuKFtd
+KQo=
+# case: the reader lookup, bound bare by a from-import
+ZnJvbSAucmVnaXN0cnkgaW1wb3J0IHJlYWRlcnMKCgpkZWYgbWFpbigpOgogICAgZm91bmQgPSBy
+ZWFkZXJzKCkKICAgIHJldHVybiBmb3VuZAo=
+# case: a resolved provider driven directly
+ZGVmIG1haW4od3JpdGVyLCBwYXlsb2FkLCBob21lLCBncmFudCk6CiAgICByZXR1cm4gd3JpdGVy
+LndyaXRlcyhwYXlsb2FkLCBob21lPWhvbWUsIGdyYW50PWdyYW50KQo=

@@ -1,0 +1,21 @@
+# fixture for: sensitive_entries_expose_method_only
+# Cases below, one per documented failure shape. Each is base64 under its
+# own `# case:` marker, and Rule 1 requires every one to fire and every
+# reporting branch of detect() to be reached by at least one of them.
+# Fixtures are data, never live source: a fixture holding real violating
+# code would trip the other checks, and the fix for that is always an
+# exempt directory - which is where every hole the audits found began.
+#   python3 -c "import base64,sys;print(base64.b64decode(''.join(l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" <file>
+# case: an empty whitelist
+U0VOU0lUSVZFX0FMTE9XRURfS0VZUyA9IGZyb3plbnNldCgoKSkK
+# case: a mutable whitelist
+U0VOU0lUSVZFX0FMTE9XRURfS0VZUyA9IFsiaWQiLCAibmFtZSIsICJ0aWVyIl0K
+# case: a documented gate that reads inline anyway
+ZGVmIHBlZWtfZG9jdW1lbnRlZChlbnRyeSwgcm9vdCk6CiAgICBpZiBlbnRyeS5zZW5zaXRpdmU6
+CiAgICAgICAgcGFzcwogICAgcmV0dXJuIG9wZW4oc3RyKHJvb3QpICsgIi9SRUFETUUubWQiKS5y
+ZWFkKCkK
+# case: a gate calling a named reader outside the test
+ZGVmIHJlYWRfbm90ZXMoZW50cnksIHJvb3QpOgogICAgcmV0dXJuIG9wZW4oc3RyKHJvb3QpICsg
+Ii9OT1RFUy5tZCIpLnJlYWQoKQoKCmRlZiBjb2xsZWN0KGVudHJ5LCByb290KToKICAgIGlmIGVu
+dHJ5LnNlbnNpdGl2ZToKICAgICAgICBwYXNzCiAgICByZXR1cm4gcmVhZF9ub3RlcyhlbnRyeSwg
+cm9vdCkK

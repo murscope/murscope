@@ -1,0 +1,18 @@
+{
+  "locale": "zh",
+  "markers": [
+    "\u5361\u70b9",
+    "\u5361\u5728",
+    "\u963b\u585e",
+    "\u5f85\u62cd\u677f",
+    "\u5f85\u786e\u8ba4",
+    "\u7b49\u5f85",
+    "\u7b49\u4f60"
+  ],
+  "note": "Seven CJK markers, stored escaped so the file stays ASCII (Rule 3).",
+  "owner_markers": [
+    "\u5f85\u62cd\u677f",
+    "\u5f85\u786e\u8ba4",
+    "\u7b49\u4f60"
+  ]
+}

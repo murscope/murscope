@@ -1,0 +1,86 @@
+# fixture for: monitored_projects_are_read_only
+# Cases below, one per documented failure shape. Each is base64 under its
+# own `# case:` marker, and Rule 1 requires every one to fire and every
+# reporting branch of detect() to be reached by at least one of them.
+# Fixtures are data, never live source: a fixture holding real violating
+# code would trip the other checks, and the fix for that is always an
+# exempt directory - which is where every hole the audits found began.
+#   python3 -c "import base64,sys;print(base64.b64decode(''.join(l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" <file>
+# case: a guard that neither names the root nor raises
+ZGVmIGd1YXJkX3dyaXRlX3BhdGgocGF0aCwgdGV4dCk6CiAgICB3aXRoIG9wZW4oc3RyKHBhdGgp
+LCAidyIpIGFzIGhhbmRsZToKICAgICAgICBoYW5kbGUud3JpdGUodGV4dCkK
+# case: os.system, unreadable command
+aW1wb3J0IG9zCgoKZGVmIHN3ZWVwKHRhcmdldCk6CiAgICBvcy5zeXN0ZW0oInJtIC1yZiAiICsg
+c3RyKHRhcmdldCkpCg==
+# case: shell=True
+aW1wb3J0IHN1YnByb2Nlc3MKCgpkZWYgc3dlZXAodGFyZ2V0KToKICAgIHN1YnByb2Nlc3MucnVu
+KCJnaXQgc3RhdHVzICIgKyBzdHIodGFyZ2V0KSwgc2hlbGw9VHJ1ZSkK
+# case: non-literal argument list
+aW1wb3J0IHN1YnByb2Nlc3MKCgpkZWYgc3dlZXAoYXJndik6CiAgICBzdWJwcm9jZXNzLnJ1bihh
+cmd2LCBjYXB0dXJlX291dHB1dD1UcnVlKQo=
+# case: program is not a string literal
+aW1wb3J0IHN1YnByb2Nlc3MKCgpkZWYgc3dlZXAocHJvZ3JhbSwgdGFyZ2V0KToKICAgIHN1YnBy
+b2Nlc3MucnVuKFtwcm9ncmFtLCAic3RhdHVzIiwgc3RyKHRhcmdldCldKQo=
+# case: program off the allowlist
+aW1wb3J0IHN1YnByb2Nlc3MKCgpkZWYgc3dlZXAodGFyZ2V0KToKICAgIHN1YnByb2Nlc3MucnVu
+KFsicm0iLCAiLXJmIiwgc3RyKHRhcmdldCldKQo=
+# case: git call with no readable subcommand
+aW1wb3J0IHN1YnByb2Nlc3MKCgpkZWYgc3dlZXAodGFyZ2V0LCBzdWIpOgogICAgc3VicHJvY2Vz
+cy5ydW4oWyJnaXQiLCAiLUMiLCBzdHIodGFyZ2V0KSwgc3ViXSkK
+# case: git subcommand off the read-only allowlist
+aW1wb3J0IHN1YnByb2Nlc3MKCgpkZWYgc3dlZXAodGFyZ2V0KToKICAgIHN1YnByb2Nlc3MucnVu
+KFsiZ2l0IiwgIi1DIiwgc3RyKHRhcmdldCksICJjb21taXQiLCAiLWFtIiwgIngiXSkK
+# case: open with a non-literal mode
+ZGVmIHN3ZWVwKHRhcmdldCwgbW9kZSk6CiAgICB3aXRoIG9wZW4oc3RyKHRhcmdldCksIG1vZGUp
+IGFzIGhhbmRsZToKICAgICAgICBoYW5kbGUud3JpdGUoIngiKQo=
+# case: write-mode open outside the guard
+ZGVmIHN3ZWVwKHRhcmdldCk6CiAgICB3aXRoIG9wZW4oc3RyKHRhcmdldCksICJhIikgYXMgaGFu
+ZGxlOgogICAgICAgIGhhbmRsZS53cml0ZSgieCIpCg==
+# case: a writer reached by method name
+aW1wb3J0IHBhdGhsaWIKCgpkZWYgc3dlZXAodGFyZ2V0KToKICAgIHBhdGhsaWIuUGF0aCh0YXJn
+ZXQpLndyaXRlX3RleHQoIngiKQo=
+# case: a permitted set the caller can widen
+ZGVmIHBlcm1pdHRlZF9zY2hlZHVsZV9wYXRocyhleHRyYT0oKSk6CiAgICByZXR1cm4gdHVwbGUo
+ZXh0cmEpCg==
+# case: a scheduling guard that refuses by returning instead of raising
+ZGVmIGd1YXJkX3NjaGVkdWxlX3dyaXRlKHBhdGgsIHRleHQpOgogICAgaWYgcGF0aCBub3QgaW4g
+cGVybWl0dGVkX3NjaGVkdWxlX3BhdGhzKCk6CiAgICAgICAgcmV0dXJuIE5vbmUKICAgIHByaW50
+KCIgIHdyaXRpbmc6ICVzIiAlIHBhdGgpCiAgICB3aXRoIG9wZW4ocGF0aCwgInciKSBhcyBoYW5k
+bGU6CiAgICAgICAgaGFuZGxlLndyaXRlKHRleHQpCg==
+# case: a scheduling guard handed its permitted set by its caller
+ZGVmIGd1YXJkX3NjaGVkdWxlX3JlbW92ZShwYXRoLCBhbGxvdyk6CiAgICBpZiBwYXRoIG5vdCBp
+biBwZXJtaXR0ZWRfc2NoZWR1bGVfcGF0aHMoYWxsb3cpOgogICAgICAgIHJhaXNlIFJ1bnRpbWVF
+cnJvcihwYXRoKQogICAgcHJpbnQoIiAgcmVtb3Zpbmc6ICVzIiAlIHBhdGgpCiAgICBvcy5yZW1v
+dmUoc3RyKHBhdGgpKQo=
+# case: a scheduling guard that names the path after writing it
+ZGVmIGd1YXJkX3NjaGVkdWxlX3dyaXRlKHBhdGgsIHRleHQpOgogICAgaWYgcGF0aCBub3QgaW4g
+cGVybWl0dGVkX3NjaGVkdWxlX3BhdGhzKCk6CiAgICAgICAgcmFpc2UgUnVudGltZUVycm9yKHBh
+dGgpCiAgICB3aXRoIG9wZW4ocGF0aCwgInciKSBhcyBoYW5kbGU6CiAgICAgICAgaGFuZGxlLndy
+aXRlKHRleHQpCiAgICBwcmludCgiICB3cm90ZTogJXMiICUgcGF0aCkK
+# case: a permitted write path that is not a job description
+U0NIRURVTEVfSk9CUyA9IHsKICAgICJkYXJ3aW4iOiAoCiAgICAgICAgKCJjb2xsZWN0IiwgKCJM
+aWJyYXJ5L0xhdW5jaEFnZW50cy9jb20ubXVyc2NvcGUuY29yZS50aW1lci5wbGlzdCIsKSksCiAg
+ICAgICAgKCJleHRyYSIsICgiLnpzaHJjIiwpKSwKICAgICksCn0KU0NIRURVTEVfRklMRVMgPSB7
+CiAgICBwbGF0Zm9ybTogdHVwbGUocmVsIGZvciBfam9iLCByZWxzIGluIGpvYnMgZm9yIHJlbCBp
+biByZWxzKQogICAgZm9yIHBsYXRmb3JtLCBqb2JzIGluIFNDSEVEVUxFX0pPQlMuaXRlbXMoKQp9
+Cg==
+# case: a permitted write path belonging to another program
+U0NIRURVTEVfSk9CUyA9IHsKICAgICJkYXJ3aW4iOiAoCiAgICAgICAgKCJjb2xsZWN0IiwgKCJM
+aWJyYXJ5L0xhdW5jaEFnZW50cy9jb20uYXBwbGUuRmluZGVyLnBsaXN0IiwpKSwKICAgICksCn0K
+U0NIRURVTEVfRklMRVMgPSB7CiAgICBwbGF0Zm9ybTogdHVwbGUocmVsIGZvciBfam9iLCByZWxz
+IGluIGpvYnMgZm9yIHJlbCBpbiByZWxzKQogICAgZm9yIHBsYXRmb3JtLCBqb2JzIGluIFNDSEVE
+VUxFX0pPQlMuaXRlbXMoKQp9Cg==
+# case: a platform this check has no supervisor description for
+U0NIRURVTEVfSk9CUyA9IHsKICAgICJ3aW4zMiI6ICgKICAgICAgICAoImNvbGxlY3QiLCAoIkFw
+cERhdGEvbXVyc2NvcGUtY29yZS54bWwiLCkpLAogICAgKSwKfQpTQ0hFRFVMRV9GSUxFUyA9IHsK
+ICAgIHBsYXRmb3JtOiB0dXBsZShyZWwgZm9yIF9qb2IsIHJlbHMgaW4gam9icyBmb3IgcmVsIGlu
+IHJlbHMpCiAgICBmb3IgcGxhdGZvcm0sIGpvYnMgaW4gU0NIRURVTEVfSk9CUy5pdGVtcygpCn0K
+# case: a permitted table nobody can read before the write
+aW1wb3J0IG9zCgpTQ0hFRFVMRV9KT0JTID0gcmVhZF90YWJsZShvcy5lbnZpcm9uLmdldCgiTVVS
+U0NPUEVfSk9CUyIsICIiKSkKU0NIRURVTEVfRklMRVMgPSB7CiAgICBwbGF0Zm9ybTogdHVwbGUo
+cmVsIGZvciBfam9iLCByZWxzIGluIGpvYnMgZm9yIHJlbCBpbiByZWxzKQogICAgZm9yIHBsYXRm
+b3JtLCBqb2JzIGluIFNDSEVEVUxFX0pPQlMuaXRlbXMoKQp9Cg==
+# case: the flat permitted table written out by hand
+U0NIRURVTEVfSk9CUyA9IHsKICAgICJkYXJ3aW4iOiAoCiAgICAgICAgKCJjb2xsZWN0IiwgKCJM
+aWJyYXJ5L0xhdW5jaEFnZW50cy9jb20ubXVyc2NvcGUuY29yZS50aW1lci5wbGlzdCIsKSksCiAg
+ICApLAp9ClNDSEVEVUxFX0ZJTEVTID0geyJkYXJ3aW4iOiAoIi56c2hyYyIsKX0K

@@ -1,0 +1,26 @@
+# fixture for: zero_telemetry
+# Cases below, one per documented failure shape. Each is base64 under its
+# own `# case:` marker, and Rule 1 requires every one to fire and every
+# reporting branch of detect() to be reached by at least one of them.
+# Fixtures are data, never live source: a fixture holding real violating
+# code would trip the other checks, and the fix for that is always an
+# exempt directory - which is where every hole the audits found began.
+#   python3 -c "import base64,sys;print(base64.b64decode(''.join(l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" <file>
+# case: a beacon assigned in script
+d2luZG93LmFkZEV2ZW50TGlzdGVuZXIoImxvYWQiLCBmdW5jdGlvbiAoKSB7CiAgdmFyIGkgPSBk
+b2N1bWVudC5jcmVhdGVFbGVtZW50KCJpbWciKTsKICBpLnNyYyA9ICJodHRwczovL2FuYWx5dGlj
+cy5leGFtcGxlL2NvbGxlY3Q/dT0xIjsKfSk7Cg==
+# case: a one-pixel image in markup
+PGltZyBzcmM9Imh0dHBzOi8vZXZpbC5leGFtcGxlL3AuZ2lmP3U9MSIgd2lkdGg9IjEiIGhlaWdo
+dD0iMSI+Cg==
+# case: an attribute wrapped onto the next line
+PGltZwogIHNyYz0iaHR0cHM6Ly9ldmlsLmV4YW1wbGUvcC5naWY/dT0xIgogIHdpZHRoPSIxIiBo
+ZWlnaHQ9IjEiPgo=
+# case: a remote image in CSS
+Lm1hc3RoZWFkIHsgYmFja2dyb3VuZC1pbWFnZTogdXJsKCJodHRwczovL2V2aWwuZXhhbXBsZS9i
+LnBuZyIpOyB9Cg==
+# case: a remote stylesheet import
+QGltcG9ydCAiaHR0cHM6Ly9ldmlsLmV4YW1wbGUvdC5jc3MiOwo=
+# case: a meta refresh to a remote address
+PG1ldGEgaHR0cC1lcXVpdj0icmVmcmVzaCIgY29udGVudD0iMDt1cmw9aHR0cHM6Ly9ldmlsLmV4
+YW1wbGUveCI+Cg==

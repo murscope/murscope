@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "murscope-ai"
+version = "0.1.0"
+description = "The murscope network layer. Installed by `pip install murscope[ai]`; never by `pip install murscope`."
+readme = "README.md"
+requires-python = ">=3.9"
+# The same form the base package uses, and for a reason that only shows
+# up in the built artifact: `license = { text = "MIT" }` names a licence
+# and ships no copyright notice, so this distribution's wheel carried
+# none at all - seven provider modules and nothing saying whose they are.
+# MIT asks for the notice in "all copies or substantial portions", and
+# seven modules that open every socket this product can open are a
+# substantial portion. `file =` puts the notice in the METADATA and the
+# text in `dist-info/licenses/`, where it can be read from the wheel
+# rather than taken on trust.
+license = { file = "LICENSE" }
+
+# Still zero third-party dependencies (ADR-0001). The transport is
+# urllib, which is stdlib. What makes this a separate distribution is not
+# a dependency it needs - it is that its *modules* must be absent from a
+# base install, and a module cannot be absent from a wheel it is in.
+dependencies = []
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+# Same single link, same reason as the base package's. Placed after the
+# last key of `[project]`, because a sub-table opened in the middle of a
+# table takes every key below it: written above `classifiers`, that key
+# would have become `project.urls.classifiers` and gone missing from the
+# metadata with no error at all.
+[project.urls]
+Homepage = "https://github.com/murscope/murscope"
+
+# `murscope.providers` only. This distribution does not own `murscope/`
+# and does not own `murscope/providers/__init__.py` - the base
+# distribution ships both, and this one adds modules beside them. That is
+# the whole arrangement: two distributions, one directory, and a base
+# install that has never had these files written into it.
+[tool.setuptools]
+packages = ["murscope.providers"]

@@ -1,0 +1,263 @@
+{
+  "aliases": [
+    "the owner",
+    "you"
+  ],
+  "declarations": [
+    {
+      "expect": "Waiting on the reviewer (2026-05-04): sign off on the schema",
+      "line": "- **Waiting on the reviewer** (2026-05-04): sign off on the schema",
+      "shape": "multi-word marker"
+    },
+    {
+      "expect": "BLOCKED: no signing key",
+      "line": "| T-0007 | BLOCKED: no signing key | P1 |",
+      "shape": "table cell, marker then punctuation"
+    },
+    {
+      "expect": "\u5361\u5728: \u4f9d\u8d56\u5347\u7ea7",
+      "line": "> \u5361\u5728: \u4f9d\u8d56\u5347\u7ea7",
+      "shape": "CJK marker"
+    },
+    {
+      "expect": "\u5f85\u62cd\u677f\uff1a\u662f\u5426\u4fdd\u7559\u5bfc\u51fa\u529f\u80fd",
+      "line": "\u5f85\u62cd\u677f\uff1a\u662f\u5426\u4fdd\u7559\u5bfc\u51fa\u529f\u80fd",
+      "shape": "CJK marker, fullwidth colon"
+    },
+    {
+      "expect": "BLOCKED",
+      "line": "  BLOCKED",
+      "shape": "short status cell"
+    },
+    {
+      "expect": "needs decision on the retry policy",
+      "line": "needs decision on the retry policy",
+      "shape": "multi-word marker"
+    }
+  ],
+  "not_owner_claims": [
+    "BLOCKED: upstream API is down",
+    "blocked on the vendor's rate limit",
+    "\u5361\u5728: \u4f9d\u8d56\u5347\u7ea7",
+    "Waiting on the vendor to reply",
+    "BLOCKED: waiting on a human: the export decision",
+    "BLOCKED: waiting on upstream API to come back",
+    "BLOCKED: waiting on someone to look at it"
+  ],
+  "note": [
+    "Synthetic ledger shapes, shipped with the package so that `murscope",
+    "selftest` can prove the three refusals still hold after the user has",
+    "edited the vocabulary (DP21). Every line here is invented. The",
+    "reference implementation's fixtures are quoted verbatim from the",
+    "owner's real ledgers and may not be copied into this repository at",
+    "any point - not the project names, not the task ids, not the people."
+  ],
+  "owner_claims": [
+    "Waiting on the owner (2026-05-04): mint a token",
+    "\u5f85\u62cd\u677f\uff1a\u662f\u5426\u4fdd\u7559\u5bfc\u51fa\u529f\u80fd",
+    "needs decision on the retry policy",
+    "BLOCKED: waiting on the owner to mint a token"
+  ],
+  "refusals": [
+    {
+      "line": "  movers and blockers only. New runtime dependency: a signing key",
+      "why": "prose"
+    },
+    {
+      "line": "blockers, which contradicts section 5.2's rule that a missing profile never",
+      "why": "prose"
+    },
+    {
+      "line": "> done | blocked(reason)`.",
+      "why": "legend"
+    },
+    {
+      "line": "<!-- move stuck tasks here and note them with `> \u5361\u5728:` on the next line -->",
+      "why": "legend"
+    },
+    {
+      "line": "`BLOCKED: this is documentation, not a state`",
+      "why": "legend"
+    },
+    {
+      "line": "unblocked the queue yesterday",
+      "why": "prose"
+    }
+  ],
+  "sections": [
+    {
+      "expect": null,
+      "lines": [
+        "## \u963b\u585e\u4e2d",
+        "",
+        "<!-- move stuck tasks here -->",
+        "",
+        "## Done"
+      ],
+      "start": 0,
+      "why": "empty heading"
+    },
+    {
+      "expect": "T-0009 waiting on the vendor reply",
+      "lines": [
+        "## \u963b\u585e\u4e2d",
+        "",
+        "- T-0009 waiting on the vendor reply",
+        "",
+        "## Done"
+      ],
+      "start": 0,
+      "why": "the first item is the claim"
+    },
+    {
+      "expect": "Export scope - Needs a decision before the release",
+      "lines": [
+        "## Waiting on a human",
+        "",
+        "| Item | Note |",
+        "|---|---|",
+        "| Export scope | Needs a decision before the release |",
+        "",
+        "## Done"
+      ],
+      "start": 0,
+      "why": "a table header is not the first item; the claim is the first data row"
+    },
+    {
+      "expect": null,
+      "lines": [
+        "## Waiting on a human",
+        "",
+        "| Item | Note |",
+        "|---|---|",
+        "",
+        "## Done"
+      ],
+      "start": 0,
+      "why": "a table with only a header is still an empty bucket (refusal 3)"
+    },
+    {
+      "expect": "Migration - the vendor - blocked on their reply",
+      "lines": [
+        "## Waiting on a human",
+        "",
+        "| Item | Owner | Note |",
+        "| :--- | :---: | ---: |",
+        "| Migration | the vendor | blocked on their reply |",
+        ""
+      ],
+      "start": 0,
+      "why": "alignment colons are still a delimiter, and three columns join as one sentence"
+    },
+    {
+      "expect": "Export scope - needs a decision",
+      "lines": [
+        "## Waiting on a human",
+        "",
+        "| Export scope | needs a decision |",
+        "",
+        "## Done"
+      ],
+      "start": 0,
+      "why": "a pipe row with no delimiter under it is data, and never echoes its pipes"
+    }
+  ],
+  "wrapped": [
+    {
+      "expect": "BLOCKED: the acceptance run RETURNED (D149): 2 passed 5 failed - the label holds until the rerun, so nobody should act on the earlier number.",
+      "lines": [
+        "- BLOCKED: the acceptance run RETURNED (D149): 2",
+        "  passed 5 failed - the label holds until the rerun,",
+        "  so nobody should act on the earlier number.",
+        "",
+        "- a separate item"
+      ],
+      "why": "a soft-wrapped declaration joins, instead of being cut where the author pressed return"
+    },
+    {
+      "expect": "BLOCKED: the export decision",
+      "lines": [
+        "- BLOCKED: the export decision",
+        "- an unrelated item"
+      ],
+      "why": "a following list item is a new item, not a continuation"
+    },
+    {
+      "expect": "BLOCKED: the export decision",
+      "lines": [
+        "- BLOCKED: the export decision",
+        "## Done"
+      ],
+      "why": "a following heading ends the sentence"
+    },
+    {
+      "expect": "BLOCKED: the export decision",
+      "lines": [
+        "- BLOCKED: the export decision",
+        "| a | b |"
+      ],
+      "why": "a following table row ends the sentence"
+    },
+    {
+      "ends_with_ellipsis": true,
+      "expect": null,
+      "lines": [
+        "- BLOCKED: the export decision is still open",
+        "  and then a further consideration that keeps going and then a further consideration that keeps going and then a further consideration that keeps going and then a further consideration that keeps going and then a further consideration that keeps going and then a further consideration that keeps going and then a further consideration that keeps going and then a further consideration that keeps going",
+        "",
+        "- next"
+      ],
+      "why": "past the cap the text is trimmed at a word and says so with an ellipsis"
+    },
+    {
+      "expect": "BLOCKED: the export decision",
+      "lines": [
+        "- BLOCKED: the export decision",
+        "This one is done and shipped last week."
+      ],
+      "why": "an unindented paragraph is not a continuation, and joining it put a line saying 'this is done' inside a blocker"
+    },
+    {
+      "expect": "BLOCKED: the export decision",
+      "lines": [
+        "- BLOCKED: the export decision",
+        "  ```",
+        "  code",
+        "  ```"
+      ],
+      "why": "a fenced code block ends the sentence"
+    },
+    {
+      "expect": "BLOCKED: the export decision",
+      "lines": [
+        "- BLOCKED: the export decision",
+        "  **Note:** an aside"
+      ],
+      "why": "a line opening in bold is a sub-note, not a continuation"
+    },
+    {
+      "expect": "BLOCKED: the export decision",
+      "lines": [
+        "- BLOCKED: the export decision",
+        "  BLOCKED: a different thing entirely"
+      ],
+      "why": "an adjacent declaration is a separate claim, however indented"
+    },
+    {
+      "expect": "BLOCKED: the export decision",
+      "lines": [
+        "- BLOCKED: the export decision",
+        "  <!-- an aside -->"
+      ],
+      "why": "an indented HTML comment is a legend, not a continuation"
+    },
+    {
+      "expect": "BLOCKED: the export decision and it is urgent",
+      "lines": [
+        "- BLOCKED: the export decision",
+        "  and it is **urgent**"
+      ],
+      "why": "a continued line has its emphasis markers stripped, like the first"
+    }
+  ]
+}

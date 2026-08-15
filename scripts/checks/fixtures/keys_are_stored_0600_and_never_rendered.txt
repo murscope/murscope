@@ -1,0 +1,24 @@
+# Rule 18's own violating shapes, base64 so that live violating source
+# never sits in a tracked file where the other checks would read it.
+# Four cases, one per static branch of detect(). Decode with:
+#   python3 -c "import base64,sys;print(base64.b64decode(sys.stdin.read()).decode())"
+
+# case: a key written through the guard with no mode
+ZnJvbSAuZ3VhcmQgaW1wb3J0IGd1YXJkX3dyaXRlX3BhdGgKCmRlZiBzdG9yZShuYW1lLCB2YWx1
+ZSwgaG9tZT1Ob25lKToKICAgIHJldHVybiBndWFyZF93cml0ZV9wYXRoKGtleV9wYXRoKG5hbWUs
+IGhvbWUpLCB2YWx1ZSArICJcbiIpCg==
+
+# case: a masking method that returns the value
+Y2xhc3MgU2VjcmV0KG9iamVjdCk6CiAgICBkZWYgX19pbml0X18oc2VsZiwgbmFtZSwgdmFsdWUp
+OgogICAgICAgIHNlbGYubmFtZSA9IG5hbWUKICAgICAgICBzZWxmLl92YWx1ZSA9IHZhbHVlCgog
+ICAgZGVmIF9fcmVwcl9fKHNlbGYpOgogICAgICAgIHJldHVybiBzZWxmLl92YWx1ZQo=
+
+# case: a raise inside an except that keeps its context
+ZGVmIHNlbmQodXJsKToKICAgIHRyeToKICAgICAgICByZXR1cm4gb3Blbl9pdCh1cmwpCiAgICBl
+eGNlcHQgVmFsdWVFcnJvcjoKICAgICAgICByYWlzZSBSdW50aW1lRXJyb3IoInRoZSByZXF1ZXN0
+IGNvdWxkIG5vdCBiZSBjb21wbGV0ZWQiKQo=
+
+# case: the caught exception printed unredacted
+ZGVmIHNlbmQodXJsKToKICAgIHRyeToKICAgICAgICByZXR1cm4gb3Blbl9pdCh1cmwpCiAgICBl
+eGNlcHQgVmFsdWVFcnJvciBhcyBleGM6CiAgICAgICAgcHJpbnQoImZhaWxlZDogJXMiICUgZXhj
+KQogICAgICAgIHJldHVybiBOb25lCg==

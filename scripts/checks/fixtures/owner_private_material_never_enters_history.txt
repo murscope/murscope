@@ -1,0 +1,11 @@
+# fixture for: owner_private_material_never_enters_history
+# shape: a private path, and content carrying CJK with no path at all
+# The body below is base64. Fixtures are data, never live source:
+#   a fixture holding real violating code would trip the other checks,
+#   and the fix for that is always an exempt directory - which is where
+#   every hole the audits found began. Decode with:
+#     python3 -c "import base64,sys;print(base64.b64decode(''.join(
+#       l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" FILE
+UkVBRE1FLm1kCm1lbW9yeS1taXJyb3IvbXVyc2NvcGUtY29uc29sZS5tZAphcmNoaXZlL2ZvdW5k
+aW5nL3JlcG9ydC5odG1sCkJSSUVGLm1kCuefpeeniyDigJQgY29udGVudCB3aXRoIG5vIHBhdGgs
+IGFzIGFuIHVucmVhY2hhYmxlIGJsb2IgaGFzIG5vbmUK

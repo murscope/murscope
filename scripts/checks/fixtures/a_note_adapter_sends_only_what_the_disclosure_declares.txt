@@ -1,0 +1,31 @@
+# fixture for: a_note_adapter_sends_only_what_the_disclosure_declares
+# Cases below, one per documented failure shape. Each is base64 under its
+# own `# case:` marker, and Rule 1 requires every one to fire and every
+# reporting branch of detect() to be reached by at least one of them.
+# Fixtures are data, never live source: a fixture holding real violating
+# code would trip the other checks, and the fix for that is always an
+# exempt directory - which is where every hole the audits found began.
+#   python3 -c "import base64,sys;print(base64.b64decode(''.join(l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" <file>
+# case: an adapter that declares no envelope
+CmRlZiBib2R5KHBheWxvYWQsIG1vZGVsKToKICAgIHJldHVybiBqc29uLmR1bXBzKHsibW9kZWwi
+OiBtb2RlbCwgIm1lc3NhZ2VzIjogW10sICJzdHJlYW0iOiBGYWxzZX0pCgoKcmVnaXN0ZXIoInZl
+bmRvciIsIHN1bW1hcnk9IngiLCB3cml0ZXM9Ym9keSwgZGVzdGluYXRpb249RU5EUE9JTlQsCiAg
+ICAgICAgIGV2aWRlbmNlPSJ1bnByb3ZlbiIsIGV2aWRlbmNlX25vdGU9Im5ldmVyIHJ1biIpCg==
+# case: an envelope key the disclosure does not describe
+CkVOVkVMT1BFX0tFWVMgPSAoIm1vZGVsIiwgIm1lc3NhZ2VzIiwgInN0cmVhbSIsICJ1c2VyIikK
+CgpkZWYgYm9keShwYXlsb2FkLCBtb2RlbCk6CiAgICByZXR1cm4ganNvbi5kdW1wcyh7Im1vZGVs
+IjogbW9kZWwsICJtZXNzYWdlcyI6IFtdLCAic3RyZWFtIjogRmFsc2UsCiAgICAgICAgICAgICAg
+ICAgICAgICAgInVzZXIiOiBhY2NvdW50X2lkKCl9KQoKCnJlZ2lzdGVyKCJ2ZW5kb3IiLCBzdW1t
+YXJ5PSJ4Iiwgd3JpdGVzPWJvZHksIGRlc3RpbmF0aW9uPUVORFBPSU5ULAogICAgICAgICBldmlk
+ZW5jZT0idW5wcm92ZW4iLCBldmlkZW5jZV9ub3RlPSJuZXZlciBydW4iKQo=
+# case: an adapter with no inspectable request shape
+CkVOVkVMT1BFX0tFWVMgPSAoIm1vZGVsIiwgIm1lc3NhZ2VzIiwgInN0cmVhbSIpCgoKZGVmIHdy
+aXRlKHBheWxvYWQsIGhvbWU9Tm9uZSwgZ3JhbnQ9Tm9uZSk6CiAgICByZXR1cm4gc2VuZChFTkRQ
+T0lOVCwganNvbi5kdW1wcyh7Im1vZGVsIjogTU9ERUwsICJtZXNzYWdlcyI6IFtdLAogICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJzdHJlYW0iOiBGYWxzZX0pLmVuY29kZSgi
+dXRmLTgiKSkKCgpyZWdpc3RlcigidmVuZG9yIiwgc3VtbWFyeT0ieCIsIHdyaXRlcz13cml0ZSwg
+ZGVzdGluYXRpb249RU5EUE9JTlQsCiAgICAgICAgIGV2aWRlbmNlPSJ1bnByb3ZlbiIsIGV2aWRl
+bmNlX25vdGU9Im5ldmVyIHJ1biIpCg==
+# case: an adapter that does not parse
+CkVOVkVMT1BFX0tFWVMgPSAoIm1vZGVsIiwKCnJlZ2lzdGVyKCJ2ZW5kb3IiLCB3cml0ZXM9Ym9k
+eSkK

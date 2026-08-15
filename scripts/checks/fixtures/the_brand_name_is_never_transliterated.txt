@@ -1,0 +1,25 @@
+# fixture for: the_brand_name_is_never_transliterated
+# shape: the brand's Chinese name spelled in Latin letters - across
+#        romanization systems, tone notations, joiners and case.
+# The body below is base64. Fixtures are data, never live source: a
+#   fixture holding the spelled-out name in the clear would be found by
+#   this very check on its own fixture file, which is the same reason
+#   Rule 12's fixture cannot name a vendor in plain text. Decode with:
+#     python3 -c "import base64,sys;print(base64.b64decode(''.join(
+#       l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" FILE
+# case: hanyu pinyin, joined and lower case
+VGhlIGRhc2hib2FyZCBoZWFkZXIgcmVhZHMgemhpcWl1IGluIHRoZSB6aCBsb2NhbGUuCg==
+# case: hyphenated and capitalised, which a spelling list would have to have imagined
+IyBaaGktUWl1IHJlbGVhc2Ugbm90ZXMK
+# case: wade-giles, apostrophe dropped
+c2VlIHRoZSBjaGloY2hpdSBib2FyZAo=
+# case: tongyong, a system no list here would have thought of
+cHJvZHVjdDogamhpaGNpb3UK
+# case: yale
+YnJhbmQ6IGpyY2h5b3UK
+# case: tone digits
+cGFja2FnZSBuYW1lIHpoaTFxaXUxIHdhcyBwcm9wb3NlZAo=
+# case: tone diacritics, composed
+dGl0bGU6IHpoxKsgcWnFqwo=
+# case: camel case welded onto another word
+Y29uc3QgbXVyc2NvcGVaaGlRaXUgPSAxOwo=

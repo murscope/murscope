@@ -1,0 +1,10 @@
+# fixture for: activity_source_reads_mtime_only
+# shape: an activity source that reads a session file instead of stat-ing it
+# The body below is base64. Fixtures are data, never live source:
+#   a fixture holding real violating code would trip the other checks,
+#   and the fix for that is always an exempt directory - which is where
+#   every hole the audits found began. Decode with:
+#   python3 -c "import base64,sys;print(base64.b64decode(''.join(l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" <file>
+aW1wb3J0IG9zCgoKZGVmIGxhc3RfdG91Y2gocm9vdCk6CiAgICBuZXdlc3QgPSBvcy5zdGF0KHJv
+b3QpLnN0X210aW1lCiAgICBib2R5ID0gb3BlbihzdHIocm9vdCkgKyAiL3Nlc3Npb24uanNvbmwi
+KS5yZWFkKCkKICAgIHJldHVybiB7ImF0IjogbmV3ZXN0LCAidGV4dCI6IGJvZHl9Cg==

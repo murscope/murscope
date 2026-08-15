@@ -1,0 +1,33 @@
+# fixture for: an_untested_provider_is_reported_as_untested
+# Cases below, one per documented failure shape. Each is base64 under its
+# own `# case:` marker, and Rule 1 requires every one to fire and every
+# reporting branch of detect() to be reached by at least one of them.
+# Fixtures are data, never live source: a fixture holding real violating
+# code would trip the other checks, and the fix for that is always an
+# exempt directory - which is where every hole the audits found began.
+#   python3 -c "import base64,sys;print(base64.b64decode(''.join(l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" <file>
+# case: a note writer with no evidence at all
+CmRlZiB3cml0ZShwYXlsb2FkLCBob21lPU5vbmUsIGdyYW50PU5vbmUpOgogICAgcmV0dXJuIHsi
+dGV4dCI6ICJhIG5vdGUifQoKCnJlZ2lzdGVyKCJ2ZW5kb3IiLCBzdW1tYXJ5PSJ4Iiwgd3JpdGVz
+PXdyaXRlLCBkZXN0aW5hdGlvbj1FTkRQT0lOVCkK
+# case: an evidence value outside the vocabulary
+CkVWSURFTkNFID0gInByb2JhYmx5IGZpbmUiCkVWSURFTkNFX05PVEUgPSAiSXQgd2FzIHJ1biBv
+bmNlIGJ5IHNvbWVib2R5IG9uIGEgZGlmZmVyZW50IGJyYW5jaCwgSSB0aGluay4iCgoKZGVmIHdy
+aXRlKHBheWxvYWQsIGhvbWU9Tm9uZSwgZ3JhbnQ9Tm9uZSk6CiAgICByZXR1cm4geyJ0ZXh0Ijog
+ImEgbm90ZSJ9CgoKcmVnaXN0ZXIoInZlbmRvciIsIHN1bW1hcnk9IngiLCB3cml0ZXM9d3JpdGUs
+IGRlc3RpbmF0aW9uPUVORFBPSU5ULAogICAgICAgICBldmlkZW5jZT1FVklERU5DRSwgZXZpZGVu
+Y2Vfbm90ZT1FVklERU5DRV9OT1RFKQo=
+# case: a label with no reason
+CkVWSURFTkNFID0gInVucHJvdmVuIgpFVklERU5DRV9OT1RFID0gInVucHJvdmVuIgoKCmRlZiB3
+cml0ZShwYXlsb2FkLCBob21lPU5vbmUsIGdyYW50PU5vbmUpOgogICAgcmV0dXJuIHsidGV4dCI6
+ICJhIG5vdGUifQoKCnJlZ2lzdGVyKCJ2ZW5kb3IiLCBzdW1tYXJ5PSJ4Iiwgd3JpdGVzPXdyaXRl
+LCBkZXN0aW5hdGlvbj1FTkRQT0lOVCwKICAgICAgICAgZXZpZGVuY2U9RVZJREVOQ0UsIGV2aWRl
+bmNlX25vdGU9RVZJREVOQ0VfTk9URSkK
+# case: an evidence declaration never passed to register
+CkVWSURFTkNFID0gInVucHJvdmVuIgpFVklERU5DRV9OT1RFID0gIk5vIGtleSBmb3IgdGhpcyB2
+ZW5kb3Igd2FzIGF2YWlsYWJsZSwgc28gbm90aGluZyB3YXMgcnVuLiIKCgpkZWYgd3JpdGUocGF5
+bG9hZCwgaG9tZT1Ob25lLCBncmFudD1Ob25lKToKICAgIHJldHVybiB7InRleHQiOiAiYSBub3Rl
+In0KCgpyZWdpc3RlcigidmVuZG9yIiwgc3VtbWFyeT0ieCIsIHdyaXRlcz13cml0ZSwgZGVzdGlu
+YXRpb249RU5EUE9JTlQpCg==
+# case: a module that does not parse
+CkVWSURFTkNFID0gInVucHJvdmVuCgpyZWdpc3RlcigidmVuZG9yIiwgd3JpdGVzPXdyaXRlKQo=

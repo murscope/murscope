@@ -1,0 +1,18 @@
+# fixture for: english_only
+# shape: a raw non-ASCII character that is not one of the permitted
+#        typographic marks, and a file that does not decode as UTF-8.
+# The body below is base64. Fixtures are data, never live source:
+#   a fixture holding real violating code would trip the other checks,
+#   and the fix for that is always an exempt directory - which is where
+#   every hole the audits found began. Decode with:
+#     python3 -c "import base64,sys;print(base64.b64decode(''.join(
+#       l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" FILE
+# case: cjk and emoji, unescaped
+IyDnn6Xnp4sKCnN0YXR1czog8J+agCBzaGlwcGluZwo=
+# case: a french accent - in none of the named ranges, and invisible to this rule for five milestones
+eyJzdGF0ZS5vd25lcl9xdWV1ZSI6ICJ2b3VzIMOqdGVzIGF0dGVuZHUiLCAidW5pdC5kYXlz
+X2FnbyI6ICIgam91cnMifQo=
+# case: a cyrillic letter - the same hole, a different alphabet
+eyJib2FyZC50aXRsZSI6ICLQvNGD0YDQodC60L7Rg9C/In0K
+# case: not valid UTF-8 - a GBK-encoded line, which no character scan can read
+dGl0bGU6INaqx+8K

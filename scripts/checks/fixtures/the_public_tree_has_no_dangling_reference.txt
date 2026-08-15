@@ -1,0 +1,39 @@
+# fixture for: the_public_tree_has_no_dangling_reference
+# shape: a document in the public tree pointing at a path the public
+#        tree withholds - a code span, a link target, a table cell.
+# The body below is base64. Fixtures are data, never live source: a
+#   fixture holding these sentences in the clear would be a real
+#   dangling reference in a real tracked file, which this very check
+#   reports. Decode with:
+#     python3 -c "import base64,sys;print(base64.b64decode(''.join(
+#       l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" FILE
+# case: a code span naming the withheld decision ledger
+RGVjaXNpb25zIGxhbmQgaW4gYG1nbXQvREVDSVNJT05TLm1kYCwgYXBwZW5kLW9ubHkuCg==
+# case: a markdown link into a withheld task book
+U2VlIHRoZSBbbWlsZXN0b25lIGJvb2tdKHRhc2tzL00wLXNjYWZmb2xkLm1kKSBmb3IgdGhlIGFjY2VwdGFuY2UgbGlzdC4K
+# case: a layout table row describing a directory that is not there
+fCBgbWdtdC9gIHwgTWFuYWdlbWVudCBjb25zb2xlIChgQk9PVGAgLyBgTUdNVGAgLyBgREVDSVNJT05TYCkgfAo=
+# case: the bare directory name, no trailing slash
+R292ZXJuZWQgZG9jcyBsaXZlIHVuZGVyIGBkZXNpZ25gLCBgdGVtcGxhdGVzYCBhbmQgYHRhc2tzYC4K
+# case: a relative form, which normalisation has to see through
+UnVuIGl0IGFnYWluc3QgYC4vbWdtdC9NR01ULm1kYCBhbmQgcmVhZCB0aGUgcmVzdWx0Lgo=
+# case: a published file citing a pull request of the development repository
+VGhlIHNxdWFzaCBzdWJqZWN0IHdhcyBlZGl0ZWQgYXQgbWVyZ2UgdGltZSwgc28gUFIgIzkg
+bG9zdAp0aGUgcmVmZXJlbmNlIEdpdEh1YiB3b3VsZCBoYXZlIGFkZGVkLgo=
+# case: a docstring citing a section number of the unpublished design document
+VGhlIGJ1ZGdldCBpcyBzaXh0eSBzZWNvbmRzIChyZXBvcnQgNy41KS4gV2hhdCB3YXMgc2Nh
+bm5lZApnb2VzIG9uIHRoZSBib2FyZC4K
+# case: the same shape as a numbered item in an unpublished task book
+UHJpbnQgdGhlIHJlcG9ydC4gTnVtYmVycywgbm90IGFkamVjdGl2ZXMgKHRhc2sgYm9vayAx
+LjEpLgo=
+# case: a withheld directory named in the clear, in a file with no markdown and no syntax
+IyAgICBoYW5kbGVzLiBJdCBub3cgbGl2ZXMgaW4gdGhlIHNlcGFyYXRlIHByaXZhdGUgdmF1
+bHQgcmVwb3NpdG9yeQojICAgIChzZWUgbWdtdC9CT09ULm1kIGZvciB0aGUgcGF0aCkuIFRo
+ZXNlIHR3byBsaW5lcyBzdGF5IGFzIGRlZmVuY2UK
+# case: a workflow comment pointing into the withheld milestone books
+ICAgICAgIyBUaGUgYWNjZXB0YW5jZSBsaXN0IHRoaXMgam9iIGlzIG1lYXN1cmVkIGFnYWlu
+c3QgbGl2ZXMgaW4KICAgICAgIyB0YXNrcy9NNS1wdWJsaWNhdGlvbi5tZCwgYW5kIHRoZSBz
+dGVwIG9yZGVyIGZvbGxvd3MgaXQuCg==
+# case: a link to another repository on this repository's own host
+VGhlIG5ldHdvcmsgbGF5ZXIgZm9yIFttdXJzY29wZV0oaHR0cHM6Ly9naXRodWIuY29tL25v
+dC1hbi1vd25lci9ub3QtYS1yZXBvc2l0b3J5KS4K

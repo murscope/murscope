@@ -1,0 +1,29 @@
+# Rule 20's own violating shapes, base64 for the same reason as every
+# other fixture here: violating source in a tracked file is read by the
+# other checks, and the fix for that is always an exempt directory.
+# Four cases, one per static branch of detect().
+
+# case: a range endpoint pinned to 31 December with no clamp anywhere
+ZnJvbSBkYXRldGltZSBpbXBvcnQgZGF0ZXRpbWUsIHRpbWV6b25lCgoKZGVmIHllYXJfcmFuZ2
+Uobm93KToKICAgIHN0YXJ0ID0gZGF0ZXRpbWUobm93LnllYXIsIDEsIDEsIDAsIDAsIDAsIHR6
+aW5mbz10aW1lem9uZS51dGMpCiAgICBlbmQgPSBkYXRldGltZShub3cueWVhciwgMTIsIDMxLC
+AyMywgNTksIDU5LCB0emluZm89dGltZXpvbmUudXRjKQogICAgcmV0dXJuIHN0YXJ0LCBlbmQK
+
+# case: a cache answering because it is young enough
+Q0FDSEVfVFRMID0gMTUwMAoKCmRlZiByZWFkaW5nKG5vdywgc3RvcmUpOgogICAgY2FjaGVkID
+0gc3RvcmUubG9hZCgpCiAgICBpZiBjYWNoZWQgaXMgbm90IE5vbmUgYW5kIChub3cgLSBjYWNo
+ZWQuYXQpIDwgQ0FDSEVfVFRMOgogICAgICAgIHJldHVybiBjYWNoZWQKICAgIHJldHVybiBmZX
+RjaChub3cpCg==
+
+# case: a total lifted from the platform instead of summed
+ZGVmIHRvdGFsKHBheWxvYWQpOgogICAgY2FsZW5kYXIgPSAocGF5bG9hZFsiZGF0YSJdWyJ2aW
+V3ZXIiXVsiY29udHJpYnV0aW9uc0NvbGxlY3Rpb24iXQogICAgICAgICAgICAgICAgWyJjb250
+cmlidXRpb25DYWxlbmRhciJdKQogICAgcmV0dXJuIGNhbGVuZGFyWyJ0b3RhbENvbnRyaWJ1dG
+lvbnMiXQo=
+
+# case: one range, and nothing live to correct it with
+ZnJvbSBkYXRldGltZSBpbXBvcnQgZGF0ZXRpbWUsIHRpbWV6b25lCgoKZGVmIHBsYW4obm93KT
+oKICAgIHN0YXJ0ID0gZGF0ZXRpbWUobm93LnllYXIsIDEsIDEsIDAsIDAsIDAsIHR6aW5mbz10
+aW1lem9uZS51dGMpCiAgICBkZWNlbWJlciA9IGRhdGV0aW1lKG5vdy55ZWFyLCAxMiwgMzEsID
+IzLCA1OSwgNTksIHR6aW5mbz10aW1lem9uZS51dGMpCiAgICByZXR1cm4gW3JlcXVlc3RfZm9y
+KHN0YXJ0LCBtaW4oZGVjZW1iZXIsIG5vdykpXQo=

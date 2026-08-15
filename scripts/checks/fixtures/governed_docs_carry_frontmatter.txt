@@ -1,0 +1,9 @@
+# fixture for: governed_docs_carry_frontmatter
+# shape: a governed .md whose frontmatter omits the captured key
+# The body below is base64. Fixtures are data, never live source:
+#   a fixture holding real violating code would trip the other checks,
+#   and the fix for that is always an exempt directory - which is where
+#   every hole the audits found began. Decode with:
+#     python3 -c "import base64,sys;print(base64.b64decode(''.join(
+#       l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" FILE
+LS0tCnRpdGxlOiBQcm9iZQp0eXBlOiBtZ210CnN0YXR1czogYWN0aXZlCi0tLQoKIyBQcm9iZQo=

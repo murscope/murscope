@@ -1,0 +1,26 @@
+# fixture for: offline_by_default
+# Cases below, one per documented failure shape. Each is base64 under its
+# own `# case:` marker, and Rule 1 requires every one to fire and every
+# reporting branch of detect() to be reached by at least one of them.
+# Fixtures are data, never live source: a fixture holding real violating
+# code would trip the other checks, and the fix for that is always an
+# exempt directory - which is where every hole the audits found began.
+#   python3 -c "import base64,sys;print(base64.b64decode(''.join(l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" <file>
+# case: plain networking import
+aW1wb3J0IHVybGxpYi5yZXF1ZXN0CgoKZGVmIGZldGNoKHVybCk6CiAgICByZXR1cm4gdXJsbGli
+LnJlcXVlc3QudXJsb3Blbih1cmwpLnJlYWQoKQo=
+# case: from-import of a networking module
+ZnJvbSBzb2NrZXQgaW1wb3J0IGNyZWF0ZV9jb25uZWN0aW9uCgoKZGVmIHBpbmcoaG9zdCk6CiAg
+ICByZXR1cm4gY3JlYXRlX2Nvbm5lY3Rpb24oKGhvc3QsIDgwKSkK
+# case: browser handed something not provably local
+aW1wb3J0IHdlYmJyb3dzZXIKCgpkZWYgc2hvdyh1cmwpOgogICAgd2ViYnJvd3Nlci5vcGVuKHVy
+bCkK
+# case: shelled-out network tool
+aW1wb3J0IHN1YnByb2Nlc3MKCgpkZWYgZmV0Y2godXJsKToKICAgIHN1YnByb2Nlc3MucnVuKFsi
+Y3VybCIsICItcyIsICJodHRwczovL2V4YW1wbGUuaW52YWxpZC94Il0pCg==
+# case: dynamic import of a networking module
+aW1wb3J0IGltcG9ydGxpYgoKCmRlZiBsb2FkKCk6CiAgICByZXR1cm4gaW1wb3J0bGliLmltcG9y
+dF9tb2R1bGUoInNvY2tldCIpCg==
+# case: dynamic import with a non-literal name
+aW1wb3J0IGltcG9ydGxpYgoKCmRlZiBsb2FkKG5hbWUpOgogICAgcmV0dXJuIGltcG9ydGxpYi5p
+bXBvcnRfbW9kdWxlKG5hbWUpCg==

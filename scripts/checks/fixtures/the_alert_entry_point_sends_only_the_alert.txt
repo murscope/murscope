@@ -1,0 +1,13 @@
+# case: reaches the daily note's writer lookup
+ZnJvbSAuIGltcG9ydCByZWdpc3RyeQoKCmRlZiBtYWluKCk6CiAgICByZXR1cm4gZGVsaXZlcigp
+CgoKZGVmIGRlbGl2ZXIoKToKICAgIGZvdW5kID0gcmVnaXN0cnkud3JpdGVycygpCiAgICByZXR1
+cm4gZm91bmQK
+# case: builds the daily note's payload
+ZnJvbSAuIGltcG9ydCBvdXRib3VuZAoKCmRlZiBtYWluKCk6CiAgICBwYXlsb2FkID0gb3V0Ym91
+bmQuYnVpbGQoW10pCiAgICByZXR1cm4gcGF5bG9hZAo=
+# case: drives a resolved provider through .writes(...)
+ZGVmIG1haW4od3JpdGVyLCBwYXlsb2FkKToKICAgIHJldHVybiB3cml0ZXIud3JpdGVzKHBheWxv
+YWQpCg==
+# case: calls the bare capability lookup
+ZnJvbSAucmVnaXN0cnkgaW1wb3J0IHJlYWRlcnMKCgpkZWYgbWFpbigpOgogICAgcmV0dXJuIHJl
+YWRlcnMoKQo=

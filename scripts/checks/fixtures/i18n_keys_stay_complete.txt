@@ -1,0 +1,20 @@
+# fixture for: i18n_keys_stay_complete
+# Cases below, one per documented failure shape. Each is base64 under its
+# own `# case:` marker, and Rule 1 requires every one to fire and every
+# reporting branch of detect() to be reached by at least one of them.
+# Fixtures are data, never live source: a fixture holding real violating
+# code would trip the other checks, and the fix for that is always an
+# exempt directory - which is where every hole the audits found began.
+#   python3 -c "import base64,sys;print(base64.b64decode(''.join(l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" <file>
+# case: no missing-key marker at all
+ZGVmIHRyYW5zbGF0ZShjYXRhbG9nLCBrZXkpOgogICAgcmV0dXJuIGNhdGFsb2cuZ2V0KGtleSwg
+IiIpCg==
+# case: missing-key marker defined but never produced
+TUlTU0lOR19QUkVGSVggPSAiW1tNSVNTSU5HOiIKCgpkZWYgdHJhbnNsYXRlKGNhdGFsb2csIGtl
+eSk6CiAgICByZXR1cm4gY2F0YWxvZy5nZXQoa2V5LCAiIikK
+# case: a runtime fallback between locales
+TUlTU0lOR19QUkVGSVggPSAiW1tNSVNTSU5HOiIKRkFMTEJBQ0tfTE9DQUxFID0gImVuIgoKCmRl
+ZiB0cmFuc2xhdGUoY2F0YWxvZywga2V5KToKICAgIHZhbHVlID0gY2F0YWxvZy5nZXQoa2V5KQog
+ICAgaWYgdmFsdWUgaXMgTm9uZToKICAgICAgICByZXR1cm4gTE9DQUxFU1tGQUxMQkFDS19MT0NB
+TEVdLmdldCgKICAgICAgICAgICAga2V5LCBNSVNTSU5HX1BSRUZJWCArIGtleSArICJdXSIpCiAg
+ICByZXR1cm4gdmFsdWUK

@@ -1,0 +1,205 @@
+name: checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.12", "3.13"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # Rule 30 executes the board template's own JavaScript, so the gate
+      # needs an engine. Pinned here rather than relying on the runner's
+      # preinstalled one: the check is red without an engine, deliberately
+      # (a check that quietly stops running is the failure the gate is
+      # built against), and "it happened to be there" is not a thing to
+      # discover from a red run six months from now.
+      #
+      # This is a development requirement of the gate and never of
+      # murscope. ADR-0001 stands: the package has zero runtime
+      # dependencies, ships no toolchain, and a user opens the board in
+      # their own browser.
+      - name: Set up a JavaScript engine for the board check
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install the package
+        # setuptools explicitly, and not as a formality. `pip install -e .`
+        # resolves the build backend in an isolated environment, so on 3.12
+        # and 3.13 - which no longer seed it into a virtual environment -
+        # the interpreter that runs the gate has no setuptools at all.
+        # Rule 13b builds both wheels with the declared backend to measure
+        # them, and correctly went red rather than green when it could not.
+        # This is a build-time tool, already named in build-system.requires;
+        # ADR-0001 forbids runtime dependencies and the core still has none.
+        run: |
+          pip install setuptools
+          pip install -e .
+
+      - name: Prove the console scripts run
+        # All three, because two of them are the ones that run with nobody
+        # present and a missing entry point would otherwise be found by a
+        # scheduler at 3am rather than here. `murscope-timer` and
+        # `murscope-alert` take no arguments and refuse them, so the
+        # refusal - exit 2, not merely non-zero - is what proves each
+        # script is wired up to the entry point DP124 and DP127 are about.
+        #
+        # `cmd || code=$?` rather than `cmd; test $? -eq 2`, and the
+        # difference is a fact about **this step** rather than about the
+        # thing it tests. This shell runs with `-e`, so a command that
+        # exits 2 aborts the step before the assertion on the next line is
+        # ever reached: the first version was written the second way and
+        # went red on all three interpreters while both scripts behaved
+        # exactly as asserted. A command on the left of `||` is exempt from
+        # errexit, which is what makes the exit code readable at all.
+        #
+        # The lesson is the one DP123 already states, one level up:
+        # running the command is not running the step that runs the
+        # command. Both forms are exercised locally under `bash -e` before
+        # this file is committed - the assertion is made to fail on a
+        # deliberately wrong expected code, not only to pass on the right
+        # one.
+        run: |
+          murscope --version
+          code=0; murscope-timer --nonsense || code=$?
+          test "$code" -eq 2
+          code=0; murscope-alert --nonsense || code=$?
+          test "$code" -eq 2
+
+      # **No visibility probe here, and that is the ruling rather than an
+      # omission.** Rule 36 watches a setting rather than a file, and the
+      # setting it watches belongs to the development repository this tree
+      # was derived from - which this tree cannot ask after and carries no
+      # evidence about. What this tree is, is the publication: everything
+      # in it arrived by derivation, so there is no switch here whose flip
+      # would release anything that is not released already.
+      #
+      # The gate below still runs Rule 36's check. It reads the derivation
+      # spec to work out which tree it is in, says which on every run, and
+      # asks the probe question only where there is a probe to ask about.
+
+      - name: Run the gate
+        run: python3 scripts/run_checks.py
+
+      # DP99's answer, and the half a machine with no `keyring` installed
+      # cannot run (DP150). Rule 18 drives the keychain backend through the
+      # **real** `keyring` package with a backend the check registers, so
+      # the operating system is never asked for anything and nobody is
+      # prompted - but on a machine without the extra that whole path is
+      # skipped silently, which is DP81's shape. `--require-keyring` turns
+      # an absent package into a finding, and this is the step that passes
+      # it.
+      #
+      # `-e '.[keyring]'` rather than `pip install keyring`, because it
+      # also proves the extra declared in pyproject.toml resolves to
+      # something real rather than to a name.
+      #
+      # Run under `bash -e` deliberately and with no `||` in it: this
+      # command is expected to exit 0, so errexit is the assertion (DP140 -
+      # the form that needs `cmd || code=$?` is the one asserting on a
+      # non-zero code).
+      - name: Prove the keychain round trip against the real keyring package
+        run: |
+          set -eux
+          pip install -e '.[keyring]'
+          python3 scripts/checks/keys_are_stored_0600_and_never_rendered.py \
+            --require-keyring
+
+      # The gate above already runs `murscope selftest` from the source
+      # tree. This step runs the same command from a *built and installed*
+      # wheel, outside the checkout, because that is where a different class
+      # of defect lives: the canary fixture was once absent from the wheel
+      # and the source-tree run could not have noticed. It is CI-only
+      # because it needs a build and a fresh environment, which is too slow
+      # to put in front of every commit, and its unique value is packaging
+      # rather than behaviour.
+      # **Both roster shapes, and the second one is what this comment is
+      # about.** `scripts/run_checks.py` runs the selftest twice for the
+      # reason DP114 records - an empty throwaway home is the easy thing to
+      # hand it and is the shape no user is ever in, because `murscope
+      # init` writes a roster - and this step ran only the empty one. So
+      # the non-empty shape was covered by the source tree and by nobody's
+      # installed wheel, which is precisely the dimension this step exists
+      # for. The fixture project is fabricated file by file and written
+      # outside the throwaway home, so that the roster's own permission is
+      # what admits it rather than its being under MURSCOPE_HOME already.
+      - name: Prove the shipped command works from a built wheel
+        run: |
+          set -eux
+          rm -rf build dist
+          python3 -m pip wheel . -w dist --no-deps
+          python3 -m venv /tmp/wheelenv
+          /tmp/wheelenv/bin/pip install --force-reinstall dist/*.whl
+          mkdir -p /tmp/outside && cd /tmp/outside
+          /tmp/wheelenv/bin/murscope --version
+          /tmp/wheelenv/bin/murscope selftest
+
+          rm -rf /tmp/wheelhome /tmp/wheelfixture
+          mkdir -p /tmp/wheelhome /tmp/wheelfixture/project/.git/refs/heads
+          mkdir -p /tmp/wheelfixture/project/.git/objects/info
+          printf 'ref: refs/heads/main\n' > /tmp/wheelfixture/project/.git/HEAD
+          printf '[core]\n\trepositoryformatversion = 0\n\tbare = false\n' \
+            > /tmp/wheelfixture/project/.git/config
+          printf '# Wheel fixture\n\n- [ ] one\n' \
+            > /tmp/wheelfixture/project/NOTES.md
+          printf '{"projects": [{"id": "wheel-fixture", "name": "wheel fixture", "root": "/tmp/wheelfixture/project"}]}\n' \
+            > /tmp/wheelhome/roster.json
+          MURSCOPE_HOME=/tmp/wheelhome /tmp/wheelenv/bin/murscope selftest
+
+      # The boundary DP88 rests on, measured where it is actually true: a
+      # base install has no provider module that could open a socket, and
+      # the `[ai]` install does. The gate's Rule 13b reads the built
+      # wheels; this reads two *installed environments*, which is the
+      # dimension a wheel inspection cannot reach - a file that arrives on
+      # disk without a distribution owning it looks fine in a zip.
+      #
+      # `--no-index` throughout: the extras distribution is not published,
+      # and resolving the extra from a local find-links proves the pin in
+      # pyproject.toml points at something real rather than at a name.
+      - name: Prove the network boundary from two fresh installs
+        run: |
+          set -eux
+          python3 -m pip wheel ./extras/murscope-ai -w dist --no-deps
+          mkdir -p /tmp/outside && cd /tmp/outside
+
+          # Base install: the module must be absent, not disabled.
+          python3 -m venv /tmp/baseenv
+          /tmp/baseenv/bin/pip install --force-reinstall --no-index \
+            --find-links "$GITHUB_WORKSPACE/dist" murscope
+          /tmp/baseenv/bin/python -c "
+          import importlib.util, murscope.providers as p
+          assert p.available() == ('noop',), p.available()
+          assert importlib.util.find_spec('murscope.providers.network') is None
+          print('base install: only noop, and no network module on disk')
+          "
+          /tmp/baseenv/bin/murscope selftest
+
+          # The [ai] install: the same wheel, plus the extra.
+          python3 -m venv /tmp/aienv
+          /tmp/aienv/bin/pip install --force-reinstall --no-index \
+            --find-links "$GITHUB_WORKSPACE/dist" 'murscope[ai]'
+          /tmp/aienv/bin/python -c "
+          import murscope.providers as p
+          assert 'network' in p.available(), p.available()
+          loaded, problems = p.load(['network'])
+          assert loaded == ['network'], (loaded, problems)
+          print('[ai] install: network present, and it loads when named')
+          "
+          /tmp/aienv/bin/murscope selftest

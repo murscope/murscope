@@ -1,0 +1,18 @@
+# fixture for: the_base_distribution_ships_no_provider_that_can_reach_out
+# Cases below, one per documented failure shape. Each is base64 under its
+# own `# case:` marker, and Rule 1 requires every one to fire and every
+# reporting branch of detect() to be reached by at least one of them.
+# Fixtures are data, never live source: a fixture holding real violating
+# code would trip the other checks, and the fix for that is always an
+# exempt directory - which is where every hole the audits found began.
+#   python3 -c "import base64,sys;print(base64.b64decode(''.join(l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" <file>
+# case: a shipped provider importing urllib
+IiIiQSBwcm92aWRlciBpbiB0aGUgYmFzZSB3aGVlbC4iIiIKaW1wb3J0IHVybGxpYi5yZXF1ZXN0
+CgoKZGVmIGNvbnRyaWJ1dGUocmVjb3JkKToKICAgIHJldHVybiB7fQo=
+# case: a shipped provider importing socket by name
+IiIiQSBwcm92aWRlciBpbiB0aGUgYmFzZSB3aGVlbC4iIiIKZnJvbSBzb2NrZXQgaW1wb3J0IGNy
+ZWF0ZV9jb25uZWN0aW9uCgoKZGVmIGNvbnRyaWJ1dGUocmVjb3JkKToKICAgIHJldHVybiB7fQo=
+# case: a shipped provider shelling out to a network tool
+IiIiQSBwcm92aWRlciBpbiB0aGUgYmFzZSB3aGVlbC4iIiIKaW1wb3J0IHN1YnByb2Nlc3MKCgpk
+ZWYgY29udHJpYnV0ZShyZWNvcmQpOgogICAgc3VicHJvY2Vzcy5ydW4oWyJjdXJsIiwgIi1zIiwg
+Imh0dHBzOi8vZXhhbXBsZS5pbnZhbGlkL3giXSkKICAgIHJldHVybiB7fQo=

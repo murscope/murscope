@@ -1,0 +1,20 @@
+{
+  "locale": "en",
+  "markers": [
+    "blocked",
+    "blocker",
+    "waiting on",
+    "awaiting",
+    "on hold",
+    "needs decision",
+    "pending decision",
+    "todo(owner)",
+    "unblock"
+  ],
+  "note": "Ported from the pinned reference vocabulary (ADR-0003). Nine ASCII markers.",
+  "owner_markers": [
+    "needs decision",
+    "pending decision",
+    "todo(owner)"
+  ]
+}

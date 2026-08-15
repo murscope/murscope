@@ -1,0 +1,24 @@
+# Working files that are never committed. The reason is the same for
+# every entry: git history is permanent, so a file committed once is
+# exposed for as long as the repository is, and an ignore pattern costs
+# nothing while an unstaged mistake cannot be taken back. What these
+# name is local to whoever is working in the tree. None of it is part of
+# the product, and nothing that is part of the product is ignored.
+memory-mirror/
+BRIEF.md
+archive/
+
+# Local tool state
+.claude/settings.local.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# OS
+.DS_Store

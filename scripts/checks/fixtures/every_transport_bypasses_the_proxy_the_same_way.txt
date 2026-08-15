@@ -1,0 +1,22 @@
+# fixture for: every_transport_bypasses_the_proxy_the_same_way
+# shape: a transport whose _opener() does not decide its own route, so a
+#        consented payload can travel through a machine the consent screen
+#        never showed
+# The body below is base64. Fixtures are data, never live source:
+#   a fixture holding real violating code would trip the other checks,
+#   and the fix for that is always an exempt directory - which is where
+#   every hole the audits found began. Decode with:
+#   python3 -c "import base64,sys;print(base64.b64decode(''.join(l for l in open(sys.argv[1]) if not l.startswith('#'))).decode())" <file>
+# case: an opener that inherits the environment's proxy
+aW1wb3J0IHVybGxpYi5yZXF1ZXN0CgoKZGVmIF9vcGVuZXIoKToKICAgICIiIkFuIG9wZW5lciB0
+aGF0IGdvZXMgd2hlcmUgdGhlIGNhbGxlciBhc2tlZC4iIiIKICAgIHJldHVybiB1cmxsaWIucmVx
+dWVzdC5idWlsZF9vcGVuZXIoKQo=
+# case: no opener at all, just urlopen
+aW1wb3J0IHVybGxpYi5yZXF1ZXN0CgoKZGVmIF9vcGVuZXIoKToKICAgICIiIktlcHQgZm9yIHRo
+ZSBjYWxsZXJzOyB0aGUgcm91dGUgaXMgd2hhdGV2ZXIgdXJsbGliIGRlY2lkZXMuIiIiCiAgICBy
+ZXR1cm4gdXJsbGliLnJlcXVlc3QK
+# case: a handler map that is not a proxy map
+aW1wb3J0IHVybGxpYi5yZXF1ZXN0CgoKZGVmIF9vcGVuZXIoKToKICAgICIiIkFuIG9wZW5lciB3
+aXRoIGEgcmVkaXJlY3QgaGFuZGxlciBhbmQgbm8gcHJveHkgZGVjaXNpb24uIiIiCiAgICByZXR1
+cm4gdXJsbGliLnJlcXVlc3QuYnVpbGRfb3BlbmVyKHVybGxpYi5yZXF1ZXN0LkhUVFBSZWRpcmVj
+dEhhbmRsZXIoKSkK
