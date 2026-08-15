@@ -1,6 +1,6 @@
 {
   "algorithm": "sha256",
-  "expected_check_count": 37,
+  "expected_check_count": 38,
   "files": {
     "murscope/fixtures/canary/NOTES.md": "f07cc172cc94d6de2b7971ab209f789f4c2f50c82693aa86beafdb49e6803bb2",
     "murscope/fixtures/canary/README.md": "62a95ae5cc112f5e59c86bc0d8deb532520580a238e574d5b7bf4b0160110ee2",
@@ -50,6 +50,7 @@
     "scripts/checks/fixtures/the_contributions_reader_corrects_three_known_platform_defects.txt": "6f017406786f83c507e6c902f260a08fc7aae9cea3c106c167f4308489f4e910",
     "scripts/checks/fixtures/the_module_matrix_names_what_it_could_not_ask.txt": "de77d28b8107909ed5f44089362a826b4754511167e1c45cdae32ed4ef6509da",
     "scripts/checks/fixtures/the_public_tree_has_no_dangling_reference.txt": "8cccd0e4ec8ef7f63a05c591047d3b8635353496ad21c41e0ea84e0fdcc92af1",
+    "scripts/checks/fixtures/the_published_history_carries_no_personal_address.txt": "8cfe51cb721dde8c76cd4331a69103704a7a41432c395ae9a08f4255478d71f8",
     "scripts/checks/fixtures/the_shipped_package_names_no_real_person.txt": "be01326829586af2dd7719832788a4411768ef4543223026d7017bf48ee34d17",
     "scripts/checks/fixtures/the_skill_names_only_commands_this_build_has.txt": "1573edd8523c37d239084a23c81b57c41ccbeedc6058b4b67f7a07325743be95",
     "scripts/checks/fixtures/the_terminal_table_is_measured_in_cells.txt": "0ed23d4320d58272bf7d354c08feb3c8e24cdbb434aa171e864948b5e6591dd0",
@@ -74,6 +75,7 @@
     "scripts/checks/the_contributions_reader_corrects_three_known_platform_defects.py": "d4fb1f85d8aa723e22d17c546013fb862160418669beda7babf58dd98786f54a",
     "scripts/checks/the_module_matrix_names_what_it_could_not_ask.py": "864d26159595f6a17b3c6de625f828d31c639c4abc826e09f64c716be87dc200",
     "scripts/checks/the_public_tree_has_no_dangling_reference.py": "096bdec1a257deb3b66aef2cb474ee4ca3c0fe5eca63eb11d033c0cc340e8114",
+    "scripts/checks/the_published_history_carries_no_personal_address.py": "384cc66c771df047d6972c12e48d881ffb1c9f8448e4b36c2dfe1ab903e987d1",
     "scripts/checks/the_shipped_package_names_no_real_person.py": "882c566b314d12631329c84a4234549ca629920b56c2b7398f5fa95ca9e0af71",
     "scripts/checks/the_skill_names_only_commands_this_build_has.py": "40cb94261791da66552fbfdc47099e06ae739a6b3fce113b1a2de859f06e74a1",
     "scripts/checks/the_terminal_table_is_measured_in_cells.py": "88bce713aae315dc14402a7dbce1d05fd0780be5f2886d2f49100996e04f24aa",
@@ -116,6 +118,7 @@
     "the_contributions_reader_corrects_three_known_platform_defects": 4,
     "the_module_matrix_names_what_it_could_not_ask": 4,
     "the_public_tree_has_no_dangling_reference": 11,
+    "the_published_history_carries_no_personal_address": 6,
     "the_shipped_package_names_no_real_person": 9,
     "the_skill_names_only_commands_this_build_has": 4,
     "the_terminal_table_is_measured_in_cells": 6,

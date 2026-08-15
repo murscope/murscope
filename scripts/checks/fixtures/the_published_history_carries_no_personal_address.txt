@@ -1,0 +1,34 @@
+# Rule 38's own violating shapes. Every address here is fabricated -
+# the domain travels in the payload, so this fixture never carries a
+# real address, which is the point of the rule it tests.
+# The last two cases are the DP87 halves: a payload with nothing to
+# judge, and a payload with nothing to judge it against.
+
+# case: the author address is a personal one
+ZG9tYWluOiB1c2Vycy5ub3JlcGx5LmdpdGh1Yi5jb20KLS0KMTExMTExMTExMTExMTEx
+MTExMTExMTExMTExMTExMTExMTExMTExMSBzb21lb25lQGV4YW1wbGUuY29tIDErc29t
+ZW9uZUB1c2Vycy5ub3JlcGx5LmdpdGh1Yi5jb20K
+
+# case: the committer address, where the author is fine
+ZG9tYWluOiB1c2Vycy5ub3JlcGx5LmdpdGh1Yi5jb20KLS0KMjIyMjIyMjIyMjIyMjIy
+MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiAxK3NvbWVvbmVAdXNlcnMubm9yZXBseS5n
+aXRodWIuY29tIHNvbWVvbmVAZXhhbXBsZS5vcmcK
+
+# case: a lookalike domain that only ends with the right words
+ZG9tYWluOiB1c2Vycy5ub3JlcGx5LmdpdGh1Yi5jb20KLS0KMzMzMzMzMzMzMzMzMzMz
+MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyBzb21lb25lQHVzZXJzLm5vcmVwbHkuZ2l0
+aHViLmNvbS5leGFtcGxlLm5ldCBzb21lb25lQHVzZXJzLm5vcmVwbHkuZ2l0aHViLmNv
+bS5leGFtcGxlLm5ldAo=
+
+# case: a subdomain of the no-reply domain, which is not it
+ZG9tYWluOiB1c2Vycy5ub3JlcGx5LmdpdGh1Yi5jb20KLS0KNDQ0NDQ0NDQ0NDQ0NDQ0
+NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NCBzb21lb25lQG1haWwudXNlcnMubm9yZXBs
+eS5naXRodWIuY29tIHNvbWVvbmVAbWFpbC51c2Vycy5ub3JlcGx5LmdpdGh1Yi5jb20K
+
+# case: no commit at all, which would otherwise scan clean
+ZG9tYWluOiB1c2Vycy5ub3JlcGx5LmdpdGh1Yi5jb20KLS0K
+
+# case: no domain declared, so nothing could be judged
+LS0KNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NSBhQGIuZXhh
+bXBsZSBjQGQuZXhhbXBsZQo=
+

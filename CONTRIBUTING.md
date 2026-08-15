@@ -1880,14 +1880,75 @@ find one is worth, and this line has been caught twice by a guard
 searching for the wrong shape (DP147, DP161).
 
 **Scope is what a stranger receives**, which is wider than the wheel:
-every tracked file the derivation publishes. `LICENSE` is the one
-exemption and it is also the seed - so removing the name from `LICENSE`
-does not disarm the rule, it turns the known positive red.
+every tracked file the derivation publishes.
+
+**The exemption is a category, not a path.** It is the file named
+`LICENSE` at the root of a directory that builds a distribution - one
+holding a `pyproject.toml` with a `[project]` table - and those
+directories are discovered by walking the published tree rather than
+listed. Written as the single path `LICENSE`, this rule made the second
+distribution choose between shipping the copyright notice MIT asks for
+and a green gate: `murscope-ai` shipped seven modules and no notice, and
+adding one turned the check red. That is Rule 5's "a permission for a
+path, not a command" failing in the other direction, too narrow rather
+than too wide. A `NOTICE` beside a `pyproject.toml` is not exempt, and
+neither is a `LICENSE` in a directory that builds nothing.
+
+The root `LICENSE` is still the seed, so removing the name from it does
+not disarm the rule - it turns the known positive red. Both ways of
+breaking the seed are refusals rather than passes: take the holder line
+out and the rule has no seed at all; leave `Copyright (c) 2026` and
+remove only the name, and the generated spellings stop firing on the one
+file they certainly should.
 
 Two limits worth writing down. A name inside a base64 fixture is data by
 construction and is not read. And the seed is only as good as `LICENSE`:
 a holder written there in one script and used in the package in another
 is a gap this cannot close.
+
+A third limit was found the hard way and is now Rule 38's: this rule
+reads files, and a commit is not a file.
+
+## Rule 38: the published history carries no personal address
+
+Rule 37 read every file the founding derivation publishes and reported
+no real person. It was right about the files. The root commit of the
+public repository carried a personal email address in its author and
+committer fields, where no file carried it - `git log` and `git
+ls-files` disagreed and only one of them was being read.
+
+**A published history is not a published file, and it travels further
+than one.** It is cloned, mirrored, and served by the host's API to
+anyone who asks, so an address in commit metadata reaches at least as
+far as the same address in a tracked file. Rule 37's window could not
+contain it, which is the third time a guard in this line has been wrong
+not about its rule but about the shape of the thing it was watching.
+
+**The criterion is positive and carries no seed.** It asserts what a
+published commit's addresses must be - at the host's own no-reply
+domain - rather than listing addresses that must not appear. That
+direction is forced rather than chosen: a check that named a particular
+address would publish that address in its own source, which is exactly
+the trap a rewrite falls into when it has to quote the thing it removes
+(Rule 35's pattern-not-literal, and Rule 34 for the brand before it).
+Nothing in the check knows whose address it is keeping out.
+
+**The domain is constructed from `origin`, not written down**, so a
+constant cannot rot into a second, wrong copy of a fact about the clone.
+
+**The mode is stated and never skipped.** The development repository's
+history carries the addresses the work was done under, it always will,
+and it is not published. Run there, the check names the tree it is in,
+says what it therefore did not assert, and passes - it does not skip,
+because a skip and a pass are the same green to anybody reading a
+summary. The criterion is proved on a fabricated address in both modes,
+so a run that cannot apply the rule still knows its matcher works.
+
+What it does not cover, and this matters after any rewrite: it reads
+commits reachable from the clone's refs. A host goes on serving an
+unreachable object by sha for some time, so the honest sentence about a
+rewritten history is **"no longer reachable from any ref"** and never
+"removed".
 
 ## Rule 14: activity source reads mtime only
 
