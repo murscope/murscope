@@ -74,15 +74,15 @@
     "scripts/checks/the_brand_name_is_never_transliterated.py": "86a02dae1925005133c5ca7447ffe26e9221e46af3e0efe23c52485a6d6e8728",
     "scripts/checks/the_contributions_reader_corrects_three_known_platform_defects.py": "d4fb1f85d8aa723e22d17c546013fb862160418669beda7babf58dd98786f54a",
     "scripts/checks/the_module_matrix_names_what_it_could_not_ask.py": "864d26159595f6a17b3c6de625f828d31c639c4abc826e09f64c716be87dc200",
-    "scripts/checks/the_public_tree_has_no_dangling_reference.py": "096bdec1a257deb3b66aef2cb474ee4ca3c0fe5eca63eb11d033c0cc340e8114",
+    "scripts/checks/the_public_tree_has_no_dangling_reference.py": "fced65fa8c31a960b75f72540393e6b8b9d5ba301e4ea0ca70bb27af0a923511",
     "scripts/checks/the_published_history_carries_no_personal_address.py": "384cc66c771df047d6972c12e48d881ffb1c9f8448e4b36c2dfe1ab903e987d1",
-    "scripts/checks/the_shipped_package_names_no_real_person.py": "882c566b314d12631329c84a4234549ca629920b56c2b7398f5fa95ca9e0af71",
+    "scripts/checks/the_shipped_package_names_no_real_person.py": "83110c3b2e61adc88bc62e7b8d521319352eba379ab4870cd74589e665b1941b",
     "scripts/checks/the_skill_names_only_commands_this_build_has.py": "40cb94261791da66552fbfdc47099e06ae739a6b3fce113b1a2de859f06e74a1",
     "scripts/checks/the_terminal_table_is_measured_in_cells.py": "88bce713aae315dc14402a7dbce1d05fd0780be5f2886d2f49100996e04f24aa",
     "scripts/checks/the_timer_collects_and_cannot_send.py": "228f2589d505dede66adb1dc254dbb3be96e786082d43e04088e926c14bdb498",
     "scripts/checks/zero_telemetry.py": "52c39cc2e05e818f757a136887b34df96de29696fb0b0b4078ae81366c79523a",
     "scripts/make_toy_repos.py": "d7d9a3ded104e2f192237b4a6bf50dec30ee1724706d2d69f57af61fa1e0a1ce",
-    "scripts/public_tree.py": "2bc1b7f3e5861e34dafdcb5fb994211d68caf48b89ad60e94507b9c9f621070c",
+    "scripts/public_tree.py": "e5dd3ade8a70048f430d06a840db210a59b084496bbdcf77c68dc3db990cafed",
     "scripts/run_checks.py": "59704c9974ed0b567c89d683d4c94433dd5fa53ae651626a092e09a41e824082"
   },
   "fixture_cases": {

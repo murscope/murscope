@@ -326,6 +326,20 @@ REWRITES = {
             "published one - so the sentence would point at a step nobody "
             "holding this tree can find",
         ),
+        (
+            "- The window that writes the code does not declare it done. "
+            "Acceptance\n  runs in a fresh context against the task book.\n",
+            "- The person who writes a change does not declare it done. It "
+            "is\n  judged by somebody else.\n",
+            "the same sentence CLAUDE.md carries, in the file a contributor "
+            "actually reads, corrected there and not here - DP181's shape "
+            "recurring inside the milestone that recorded it. In the "
+            "published tree there is no task book, no execution window and "
+            "no acceptance window, so it sends a reader after three things "
+            "that do not exist for them. What survives is the part that was "
+            "doing the work, and it is the part a stranger can act on with a "
+            "pull request and a reviewer",
+        ),
     ),
     "design/ADR-0003-port-baseline-from-the-reference-implementation.md": (
         (
@@ -987,7 +1001,17 @@ def extract(dest):
     Every tracked file is classified, copied or skipped, and rewritten
     if the spec says so. Nothing here counts to a target: the numbers in
     the report are measured off what happened (DP159).
+
+    `dest` is resolved first, and that is load-bearing rather than
+    tidiness. The regeneration step runs a script inside the extracted
+    tree with `cwd` set to that tree, so a **relative** destination was
+    joined onto itself - `ex1/ex1/scripts/...` - and the step failed
+    while 151 files had already been written. It failed loudly, which is
+    the good half; the bad half is that it left a tree that looks
+    complete and carries a stale `checks_manifest.json`, and a tree that
+    looks complete is the thing somebody publishes.
     """
+    dest = Path(dest).resolve()
     dest = Path(dest)
     if dest.exists():
         shutil.rmtree(str(dest))

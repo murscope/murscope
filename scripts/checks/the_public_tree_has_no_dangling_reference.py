@@ -835,6 +835,32 @@ def main():
                     "first run there - and a gate that is red on day one "
                     "teaches a reader to ignore it." % (rel, lineno, token))
 
+        # A file nothing could decode is not a file nothing needed to be
+        # read. Until now these were counted and never named, and the
+        # count was printed beside a claim that the read total equals the
+        # tree - both of which were true only because the number had
+        # always been zero. One tracked binary made the extraction report
+        # 152 published and 151 read, and pass (DP184).
+        for rel in unreadable:
+            findings.append(
+                "%s: could not be decoded as text, so no half of this rule "
+                "read it - and it is published. A file this check cannot "
+                "read is not a file that does not need reading; it is a "
+                "hole in the coverage the summary claims." % rel)
+
+        # The structural half of the same defect, and it catches more than
+        # its cause: whatever the reason, every published file is either
+        # read or it is a finding. Stated as an equality rather than as a
+        # printed number, because a number nobody compares is a number
+        # that can drift.
+        total_read = sum(read.values())
+        if total_read != len(report["included"]):
+            findings.append(
+                "the extraction published %d file(s) and this rule read %d "
+                "of them. The difference is files no half examined, so the "
+                "clean result covers less than the tree it claims to "
+                "(DP87)." % (len(report["included"]), total_read))
+
         for finding in findings:
             print(finding)
             bad += 1

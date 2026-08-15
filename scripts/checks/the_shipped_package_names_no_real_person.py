@@ -387,10 +387,15 @@ def main():
               "not survive being published.")
         return 1
 
-    print("OK: %d spelling(s) generated from %d seed(s) - the copyright "
-          "holder in LICENSE and %d name(s) in this repository's authorship - "
-          "and every one of them was proved to fire on LICENSE before %d "
-          "published file(s) were scanned and came back clean."
+    # The seed count and the authorship count are different numbers and
+    # the sentence used to read as though one contained the other: "3
+    # seed(s) - the copyright holder and 3 name(s)" is correct arithmetic
+    # and unreadable English. Both are named for what they are.
+    print("OK: %d spelling(s) generated from %d usable seed(s), drawn from "
+          "the copyright holder in LICENSE and the %d distinct name(s) in "
+          "this repository's authorship - and every one of them was proved "
+          "to fire on LICENSE before %d published file(s) were scanned and "
+          "came back clean."
           % (len(space), len(usable), len(authors), scanned))
     print("    The exemption is a category rather than a path: the `LICENSE` "
           "at the root of a directory that builds a distribution. %d such "

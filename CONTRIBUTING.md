@@ -43,7 +43,13 @@ DP150) and it does not go red without it - CI installs it and passes
 ## What the citations point at
 
 Four names recur in the prose here and throughout `murscope/`, and not
-one of them is a file you can open in this tree. Saying so once is the
+one of them is a citation you can follow. Two of the four are real
+files in the repository where the work happens - the decision ledger
+and the task books - and neither is published; the other two are not
+files at all. That sentence is written to be true in both trees,
+because the version before it said none of them was a file you could
+open here, which was true where it was published and false where it
+was written. Saying so once is the
 whole of the fix; leaving a reader to discover it is how a document
 teaches people that its references are decoration.
 
@@ -2102,8 +2108,8 @@ import from the core is all it would take to lose that quietly.
 - A check that cannot fail is not a check. Every check's docstring
   carries a `Fails when:` line, and acceptance constructs that exact
   shape and confirms it goes red.
-- The window that writes the code does not declare it done. Acceptance
-  runs in a fresh context against the task book.
+- The person who writes a change does not declare it done. It is
+  judged by somebody else.
 
 ### Reverse verification cases
 
