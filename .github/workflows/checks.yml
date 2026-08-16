@@ -98,6 +98,25 @@ jobs:
       - name: Run the gate
         run: python3 scripts/run_checks.py
 
+      # **No extraction assertion here, and that is the ruling rather
+      # than an omission.** DP182's condition is that something must
+      # assert that this tree is the extraction of a commit of the
+      # repository it was derived from. That repository is private, and
+      # this tree carries no evidence about it - so the assertion lives
+      # where the history it searches lives, which is the same answer
+      # Rule 36's probe gets one paragraph up.
+      #
+      # Running it here would ask this tree whether it is its own
+      # extraction. The derivation is idempotent, so the answer would be
+      # yes on every run, and a step that cannot come back with anything
+      # else is a green square rather than a measurement.
+      #
+      # `scripts/extraction_match.py` is published all the same, and
+      # that is the point of its being a comparator rather than a
+      # fetcher: it takes two directories, makes no network call, and
+      # anybody holding a clone of this tree and a checkout of what they
+      # believe it was derived from can put the question themselves.
+
       # DP99's answer, and the half a machine with no `keyring` installed
       # cannot run (DP150). Rule 18 drives the keychain backend through the
       # **real** `keyring` package with a backend the check registers, so

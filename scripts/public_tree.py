@@ -340,6 +340,38 @@ REWRITES = {
             "doing the work, and it is the part a stranger can act on with a "
             "pull request and a reviewer",
         ),
+        (
+            "Every published document honours it. **The owner's\n"
+            "working directories were the exception, and they were the "
+            "exception\nstructurally:** the derivation withholds them, so "
+            "Rule 35 never opens\nthem, and until this rule no check read a "
+            "number in one. Three numbers\nsat in the file every incoming "
+            "window is told is the state, one of them\nwrong for five "
+            "decisions, and they were found by an entrance exam rather\nthan "
+            "by a mechanism - which is a way of saying they were found by "
+            "luck.\nThat is DP176's shape once more, a guard whose window "
+            "does not contain\nthe thing it watches, and the remedy for that "
+            "has never been care.\n",
+            "Every document in this tree honours it. **The rule\nbelow is "
+            "about documents this tree does not carry:** a development\n"
+            "repository keeps its own state and its own decision ledger in "
+            "working\ndirectories the derivation withholds, and the counts "
+            "those documents\nstate are what this rule measures. Where those "
+            "directories are, it\nreads them and compares; here it names the "
+            "mode it is in and asserts\nnothing, which is the shape Rule 2, "
+            "Rule 36 and Rule 38 already have.\n",
+            "Rule 39's opening paragraph is a set of facts about a "
+            "development repository's working directories: that they were an "
+            "exception, that three numbers sat in one of their documents, and "
+            "that one of those numbers had been wrong for five decisions. "
+            "None of that is a fact about the tree a stranger clones, which "
+            "carries no evidence about the repository it was derived from. "
+            "The rule survives publication and its subject does not - the "
+            "class DP170 named, a sentence true where it is written and false "
+            "where it lands - and the published form says which mode the "
+            "check is in instead, which is what the check itself prints on "
+            "every run there",
+        ),
     ),
     "design/ADR-0003-port-baseline-from-the-reference-implementation.md": (
         (
@@ -673,6 +705,70 @@ REWRITES = {
             "Rule 36's check needs no step here: it detects a derived tree "
             "from the exclusion table and does not ask the probe question of "
             "one",
+        ),
+        (
+            "      # DP182's condition, and the reason it is a step rather than a\n"
+            "      # check is the reason Rule 36's probe above is one. PUBLICATION.md\n"
+            "      # claims every file in the published repository arrived there by\n"
+            "      # derivation, and from that repository's second commit onward\n"
+            "      # nothing measured the claim: Rule 2 was ruled not to apply inside\n"
+            "      # a derivation - correctly, because nothing lands there - and\n"
+            "      # Rule 2's check had been, accidentally, the only thing between\n"
+            "      # that `main` and a hand edit pushed straight to it.\n"
+            "      #\n"
+            "      # **The fetch is this step's job and the comparison is not.**\n"
+            "      # Rule 11 forbids every module under scripts/ from reaching the\n"
+            "      # network, so `extraction_match.py` takes two directories and no\n"
+            "      # URL. That is not a constraint worked around: it is what lets\n"
+            "      # anybody run the same comparison offline, against a clone they\n"
+            "      # made themselves, and get this step's answer without this step.\n"
+            "      #\n"
+            "      # The repository is asked of the derivation spec rather than named\n"
+            "      # here, so the two cannot drift apart with the copy that fell\n"
+            "      # behind staying green. `github.server_url` for the host, for the\n"
+            "      # same reason `GITHUB_REPOSITORY` is used above - the step is\n"
+            "      # about the host it is running on rather than one written down.\n"
+            "      #\n"
+            "      # **It may not assume `HEAD`.** The published tree is behind this\n"
+            "      # one for as long as a push is held, which is the ordinary\n"
+            "      # condition, so the step searches history and says how far it\n"
+            "      # looked; it proves its comparator against trees that are not\n"
+            "      # extractions before it believes one that is; and it names the\n"
+            "      # commit it matched, because a run that matches and does not say\n"
+            "      # what it matched is not evidence.\n"
+            "      - name: Prove the published tree is an extraction of this history\n"
+            "        run: |\n          set -eux\n"
+            "          destination=$(python3 scripts/extraction_match.py --destination)\n"
+            "          rm -rf /tmp/published-tree\n"
+            "          git clone --quiet \"${{ github.server_url }}/${destination}.git\" \\\n"
+            "            /tmp/published-tree\n"
+            "          python3 scripts/extraction_match.py --search /tmp/published-tree\n",
+            "      # **No extraction assertion here, and that is the ruling rather\n"
+            "      # than an omission.** DP182's condition is that something must\n"
+            "      # assert that this tree is the extraction of a commit of the\n"
+            "      # repository it was derived from. That repository is private, and\n"
+            "      # this tree carries no evidence about it - so the assertion lives\n"
+            "      # where the history it searches lives, which is the same answer\n"
+            "      # Rule 36's probe gets one paragraph up.\n"
+            "      #\n"
+            "      # Running it here would ask this tree whether it is its own\n"
+            "      # extraction. The derivation is idempotent, so the answer would be\n"
+            "      # yes on every run, and a step that cannot come back with anything\n"
+            "      # else is a green square rather than a measurement.\n"
+            "      #\n"
+            "      # `scripts/extraction_match.py` is published all the same, and\n"
+            "      # that is the point of its being a comparator rather than a\n"
+            "      # fetcher: it takes two directories, makes no network call, and\n"
+            "      # anybody holding a clone of this tree and a checkout of what they\n"
+            "      # believe it was derived from can put the question themselves.\n",
+            "the step clones a repository this tree cannot see the history of, and "
+            "pointed at this tree it asks whether the derivation is idempotent - "
+            "which it is, on every run, while measuring nothing about where any of "
+            "this came from. A step whose only available answer is yes is the "
+            "day-one-green counterpart of the day-one-red gate the rewrite above "
+            "refuses. The comparator itself ships: it is offline and takes two "
+            "directories, so a reader here can ask the question this step asks "
+            "there",
         ),
     ),
     "PUBLICATION.md": (
@@ -1078,9 +1174,17 @@ def regenerate_derived(dest):
             "and every rewritten file would fail its own gate on a hash"
             % regenerator.relative_to(dest).as_posix())
         return problems
+    # `-B`, and it is load-bearing rather than tidiness. The regenerator
+    # imports check modules to read their registers, and an import writes
+    # `__pycache__/*.pyc` beside the file - into the tree this function is
+    # building. The extraction then reported 156 files while 157 sat on
+    # the disk, which is DP176's index-against-disk shape inside the
+    # derivation, and the only thing that saw it was a comparator counting
+    # the disk rather than the report.
     completed = subprocess.run(
-        [sys.executable, str(regenerator), "--update-manifest"],
-        cwd=str(dest), stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        [sys.executable, "-B", str(regenerator), "--update-manifest"],
+        cwd=str(dest), stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+        env=dict(os.environ, PYTHONDONTWRITEBYTECODE="1"))
     if completed.returncode != 0:
         problems.append(
             "regenerating the freeze in the extracted tree exited %d: %s"

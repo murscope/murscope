@@ -293,12 +293,24 @@ def load_detector(path):
     name = "murscope_check_%s" % path.stem
     spec = importlib.util.spec_from_file_location(name, str(path))
     module = importlib.util.module_from_spec(spec)
+    # **An inspection import must leave nothing behind.** Executing a
+    # module writes `__pycache__/*.pyc` beside it, and this function is
+    # called from inside the extracted public tree when the freeze is
+    # regenerated there - so the derivation wrote 156 files and the tree
+    # on disk held 157, with every check counting what the spec *said* it
+    # wrote and none of them counting the disk. DP176's shape, one tree
+    # over, and it was found by the comparator's own two-reader assertion
+    # within minutes of being introduced.
+    previously = sys.dont_write_bytecode
+    sys.dont_write_bytecode = True
     try:
         spec.loader.exec_module(module)
     except SystemExit:
         raise RuntimeError(
             "runs at import time: sys.exit() is called at module level "
             "instead of behind `if __name__ == \"__main__\":`")
+    finally:
+        sys.dont_write_bytecode = previously
     return module
 
 
@@ -308,6 +320,40 @@ def recorded_fixture_counts():
         return None
     try:
         return json.loads(MANIFEST.read_text(encoding="utf-8")).get("fixture_cases")
+    except ValueError:
+        return None
+
+
+# Rule 40's register is a tuple in a check, and a set whose size is
+# recorded nowhere shrinks by one edit with no trace but a smaller number
+# in its own output. Same answer as `expected_check_count` one level up,
+# and the same counter-argument accepted for the same reason: a declared
+# constant can be edited in the same commit, but doing so takes a second,
+# legible edit instead of none. Named rather than discovered - rename the
+# check without updating this and the count goes undeclared, which Rule 40
+# reports as a finding rather than as a smaller set.
+CI_GUARD_CHECK = "a_guard_that_lives_in_ci_stays_installed.py"
+
+
+def ci_guard_count():
+    """How many CI-resident guards Rule 40's register holds, or None."""
+    path = CHECKS_DIR / CI_GUARD_CHECK
+    if not path.is_file():
+        return None
+    try:
+        module = load_detector(path)
+    except BaseException:
+        return None
+    guards = getattr(module, "GUARDS", None)
+    return len(guards) if guards is not None else None
+
+
+def recorded_ci_guard_count():
+    if not MANIFEST.exists():
+        return None
+    try:
+        return json.loads(MANIFEST.read_text(encoding="utf-8")).get(
+            "expected_ci_guard_count")
     except ValueError:
         return None
 
@@ -357,6 +403,20 @@ def write_manifest(allow_shrink=False):
         print("  python3 scripts/checks/all_rules_have_checks.py "
               "--update-manifest --allow-shrink")
         return 1
+    guards_previous = recorded_ci_guard_count()
+    guards_current = ci_guard_count()
+    if (guards_previous is not None and guards_current is not None
+            and guards_current < guards_previous and not allow_shrink):
+        print("REFUSED: Rule 40's register holds %d CI-resident guard(s); the "
+              "manifest records %d. The baseline only goes up."
+              % (guards_current, guards_previous))
+        print("A guard dropped from that register is an assertion that stops "
+              "being watched, and its own output would report the smaller "
+              "number in green. If one really was retired, say so explicitly:")
+        print("  python3 scripts/checks/all_rules_have_checks.py "
+              "--update-manifest --allow-shrink")
+        return 1
+
     payload = {
         "note": (
             "Content hashes of the gate: every Python file under scripts/ and "
@@ -364,19 +424,24 @@ def write_manifest(allow_shrink=False):
             "recognise, so no check can be hollowed out without the change "
             "showing in this file's diff. expected_check_count is asserted by "
             "the runner, so a gate that silently shrinks is caught too. The "
-            "count only goes up: lowering it needs --allow-shrink. Regenerate "
+            "expected_ci_guard_count is asserted by Rule 40, so its register "
+            "cannot be narrowed without an edit here either. The counts only "
+            "go up: lowering one needs --allow-shrink. Regenerate "
             "with: python3 scripts/checks/all_rules_have_checks.py "
             "--update-manifest"
         ),
         "algorithm": "sha256",
         "expected_check_count": len(check_scripts()),
+        "expected_ci_guard_count": guards_current,
         "fixture_cases": fixture_case_counts(),
         "files": {rel: digest(path) for rel, path in sorted(frozen_files().items())},
     }
     MANIFEST.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    print("Wrote %s: %d frozen file(s), expected_check_count=%d."
+    print("Wrote %s: %d frozen file(s), expected_check_count=%d, "
+          "expected_ci_guard_count=%s."
           % (MANIFEST.relative_to(REPO_ROOT).as_posix(),
-             len(payload["files"]), payload["expected_check_count"]))
+             len(payload["files"]), payload["expected_check_count"],
+             payload["expected_ci_guard_count"]))
     print("This is the freeze. The diff on this file is the record that the "
           "gate changed - make sure the review sees it.")
     return 0

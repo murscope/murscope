@@ -1,17 +1,19 @@
 {
   "algorithm": "sha256",
-  "expected_check_count": 38,
+  "expected_check_count": 40,
+  "expected_ci_guard_count": 9,
   "files": {
     "murscope/fixtures/canary/NOTES.md": "f07cc172cc94d6de2b7971ab209f789f4c2f50c82693aa86beafdb49e6803bb2",
     "murscope/fixtures/canary/README.md": "62a95ae5cc112f5e59c86bc0d8deb532520580a238e574d5b7bf4b0160110ee2",
     "murscope/fixtures/ledger_cases.json": "b8c33aa07f80c6e82d9bcf6ebd75b97b293d466006ecf31030af838e58b685da",
     "scripts/checks/a_degraded_note_is_retried_never_held.py": "6150e2352bf053642ed17d9f9e31f12a12ffaa12c8c65825c52010feb3c230e2",
+    "scripts/checks/a_guard_that_lives_in_ci_stays_installed.py": "61ca5e7a28d03b4096498e0b2814475fdb8e9dce9803fba4097a52e01e8428b3",
     "scripts/checks/a_machine_acting_consent_says_so_on_screen.py": "b9d9bbf7cac7d9c5cbe4a0b828fe6fde559db2f1a7638ac234224781330a6d30",
     "scripts/checks/a_note_adapter_sends_only_what_the_disclosure_declares.py": "ba73b2844e23b5e7f4911d7eff1d4cd5c954ca4caadf0d8d0b00ec7e2ad15a5f",
     "scripts/checks/a_read_window_and_its_permits_stay_paired.py": "ed96ed690cdb9a6f6eee8565e9acc5a10a21ec99d8f92b96fe5eadbb2770ac2e",
     "scripts/checks/activity_source_reads_mtime_only.py": "03c9f016dbcaf8452d780ae0ab1df5555e73112be109572336df4e23b91f461c",
     "scripts/checks/all_changes_via_pr.py": "ec86b211496dc80683257f6cdd086bc9dc574a94a5b8b49941bb9f02c58f56ea",
-    "scripts/checks/all_rules_have_checks.py": "6b9cd0a165dcd38159498adbaf55956e0ccf0d6fe5a2e9dbbb430957f41dd390",
+    "scripts/checks/all_rules_have_checks.py": "bf85f116ae314b91bb4aed1532adc0ff37f5dbf1621cf3497b9505417fd5d693",
     "scripts/checks/an_untested_provider_is_reported_as_untested.py": "5735bc7d223ab1cc7fe87b0f5f7a424d18a7eb5bf293ac5639b2cad10e45e5f0",
     "scripts/checks/blocker_extraction_stays_precise.py": "ee2aacd384fdd9ec63a8c12dbdf9178aea83a8d498926999ac8bd8447ee03957",
     "scripts/checks/consent_binds_to_the_disclosure_it_showed.py": "8dcfe75cc2217a8b4202e657b1c67251d9979856fd0f00fb7bdbe515b9c3a0d7",
@@ -19,6 +21,7 @@
     "scripts/checks/english_only.py": "bf39704e0cb0e9e27c9714b991089808853b669086bcd185b62b7e50e599e6d7",
     "scripts/checks/every_transport_bypasses_the_proxy_the_same_way.py": "5e19a887e547bc76c37d7f6890bc41155cd2a35cbd83f0f2b352b4bff979d593",
     "scripts/checks/fixtures/a_degraded_note_is_retried_never_held.txt": "7f8831572692e47e6a893803be03c2af92a0c5a1b45f63a80f9ec5bb7ac13e63",
+    "scripts/checks/fixtures/a_guard_that_lives_in_ci_stays_installed.txt": "cfd02b3f4e85925c42a503f962c461521b2ed1f911b7385585a2f19d0b64cad1",
     "scripts/checks/fixtures/a_machine_acting_consent_says_so_on_screen.txt": "2539aac0d104e83f529fac0f30bfd57b6bc46b2f4f9aa561f1c647117255c0ef",
     "scripts/checks/fixtures/a_note_adapter_sends_only_what_the_disclosure_declares.txt": "5beebc4fcbd9ee7f36f326d1dfc38c7f9d96ca3dcab1a9fc8f92a0b3a4c91e94",
     "scripts/checks/fixtures/a_read_window_and_its_permits_stay_paired.txt": "521d31ab3b6837302d2cb53781d45035349b4659c216fb44416efe0ba0c1bc5d",
@@ -49,6 +52,7 @@
     "scripts/checks/fixtures/the_brand_name_is_never_transliterated.txt": "a9a47e3a853279f0d079b492c3a89edefb9210df1c8fa1db743a554816243b57",
     "scripts/checks/fixtures/the_contributions_reader_corrects_three_known_platform_defects.txt": "6f017406786f83c507e6c902f260a08fc7aae9cea3c106c167f4308489f4e910",
     "scripts/checks/fixtures/the_module_matrix_names_what_it_could_not_ask.txt": "de77d28b8107909ed5f44089362a826b4754511167e1c45cdae32ed4ef6509da",
+    "scripts/checks/fixtures/the_numbers_the_console_states_are_measured.txt": "e18be04dca6c659a6e07048d8b909dca92e07c23da3f062aabd861533e424719",
     "scripts/checks/fixtures/the_public_tree_has_no_dangling_reference.txt": "8cccd0e4ec8ef7f63a05c591047d3b8635353496ad21c41e0ea84e0fdcc92af1",
     "scripts/checks/fixtures/the_published_history_carries_no_personal_address.txt": "8cfe51cb721dde8c76cd4331a69103704a7a41432c395ae9a08f4255478d71f8",
     "scripts/checks/fixtures/the_shipped_package_names_no_real_person.txt": "be01326829586af2dd7719832788a4411768ef4543223026d7017bf48ee34d17",
@@ -74,6 +78,7 @@
     "scripts/checks/the_brand_name_is_never_transliterated.py": "86a02dae1925005133c5ca7447ffe26e9221e46af3e0efe23c52485a6d6e8728",
     "scripts/checks/the_contributions_reader_corrects_three_known_platform_defects.py": "d4fb1f85d8aa723e22d17c546013fb862160418669beda7babf58dd98786f54a",
     "scripts/checks/the_module_matrix_names_what_it_could_not_ask.py": "864d26159595f6a17b3c6de625f828d31c639c4abc826e09f64c716be87dc200",
+    "scripts/checks/the_numbers_the_console_states_are_measured.py": "01b9067eb11672234f32acd21bcf141655ff3ce615cbe32c5bf73a903c808e9d",
     "scripts/checks/the_public_tree_has_no_dangling_reference.py": "fced65fa8c31a960b75f72540393e6b8b9d5ba301e4ea0ca70bb27af0a923511",
     "scripts/checks/the_published_history_carries_no_personal_address.py": "384cc66c771df047d6972c12e48d881ffb1c9f8448e4b36c2dfe1ab903e987d1",
     "scripts/checks/the_shipped_package_names_no_real_person.py": "83110c3b2e61adc88bc62e7b8d521319352eba379ab4870cd74589e665b1941b",
@@ -81,12 +86,14 @@
     "scripts/checks/the_terminal_table_is_measured_in_cells.py": "88bce713aae315dc14402a7dbce1d05fd0780be5f2886d2f49100996e04f24aa",
     "scripts/checks/the_timer_collects_and_cannot_send.py": "228f2589d505dede66adb1dc254dbb3be96e786082d43e04088e926c14bdb498",
     "scripts/checks/zero_telemetry.py": "52c39cc2e05e818f757a136887b34df96de29696fb0b0b4078ae81366c79523a",
+    "scripts/extraction_match.py": "f7c3289dcfa77835798dcf79c25d80074ddf6d37a88297fee01db5ec5c8bcb34",
     "scripts/make_toy_repos.py": "d7d9a3ded104e2f192237b4a6bf50dec30ee1724706d2d69f57af61fa1e0a1ce",
-    "scripts/public_tree.py": "e5dd3ade8a70048f430d06a840db210a59b084496bbdcf77c68dc3db990cafed",
+    "scripts/public_tree.py": "edda9f9e4330e592f1bb3cbf76194964552bfe3bf5c0291c209538e6570b0aec",
     "scripts/run_checks.py": "59704c9974ed0b567c89d683d4c94433dd5fa53ae651626a092e09a41e824082"
   },
   "fixture_cases": {
     "a_degraded_note_is_retried_never_held": 6,
+    "a_guard_that_lives_in_ci_stays_installed": 16,
     "a_machine_acting_consent_says_so_on_screen": 4,
     "a_note_adapter_sends_only_what_the_disclosure_declares": 4,
     "a_read_window_and_its_permits_stay_paired": 4,
@@ -117,6 +124,7 @@
     "the_brand_name_is_never_transliterated": 8,
     "the_contributions_reader_corrects_three_known_platform_defects": 4,
     "the_module_matrix_names_what_it_could_not_ask": 4,
+    "the_numbers_the_console_states_are_measured": 14,
     "the_public_tree_has_no_dangling_reference": 11,
     "the_published_history_carries_no_personal_address": 6,
     "the_shipped_package_names_no_real_person": 9,
@@ -125,5 +133,5 @@
     "the_timer_collects_and_cannot_send": 3,
     "zero_telemetry": 6
   },
-  "note": "Content hashes of the gate: every Python file under scripts/ and every fixture. Rule 1 refuses a file whose hash it does not recognise, so no check can be hollowed out without the change showing in this file's diff. expected_check_count is asserted by the runner, so a gate that silently shrinks is caught too. The count only goes up: lowering it needs --allow-shrink. Regenerate with: python3 scripts/checks/all_rules_have_checks.py --update-manifest"
+  "note": "Content hashes of the gate: every Python file under scripts/ and every fixture. Rule 1 refuses a file whose hash it does not recognise, so no check can be hollowed out without the change showing in this file's diff. expected_check_count is asserted by the runner, so a gate that silently shrinks is caught too. The expected_ci_guard_count is asserted by Rule 40, so its register cannot be narrowed without an edit here either. The counts only go up: lowering one needs --allow-shrink. Regenerate with: python3 scripts/checks/all_rules_have_checks.py --update-manifest"
 }

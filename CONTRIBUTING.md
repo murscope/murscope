@@ -45,11 +45,8 @@ DP150) and it does not go red without it - CI installs it and passes
 Four names recur in the prose here and throughout `murscope/`, and not
 one of them is a citation you can follow. Two of the four are real
 files in the repository where the work happens - the decision ledger
-and the task books - and neither is published; the other two are not
-files at all. That sentence is written to be true in both trees,
-because the version before it said none of them was a file you could
-open here, which was true where it was published and false where it
-was written. Saying so once is the
+and the task books - and neither of those is published; the other two
+are not files at all. Saying so once is the
 whole of the fix; leaving a reader to discover it is how a document
 teaches people that its references are decoration.
 
@@ -1955,6 +1952,266 @@ commits reachable from the clone's refs. A host goes on serving an
 unreachable object by sha for some time, so the honest sentence about a
 rewritten history is **"no longer reachable from any ref"** and never
 "removed".
+
+## Rule 39: the numbers the console states are measured
+
+"Any countable claim in the docs needs a check behind it, or is not
+written. A hand-written number is a claim, not a fact" - DP25, restated
+at DP141 and DP159. Every document in this tree honours it. **The rule
+below is about documents this tree does not carry:** a development
+repository keeps its own state and its own decision ledger in working
+directories the derivation withholds, and the counts those documents
+state are what this rule measures. Where those directories are, it
+reads them and compares; here it names the mode it is in and asserts
+nothing, which is the shape Rule 2, Rule 36 and Rule 38 already have.
+
+Four numbers, each measured and compared with what the state document
+says:
+
+- **how many rules there are**, read off the same `## Rule ` heading
+  line Rule 1 greps rather than counted a second way. It arrived last,
+  after an acceptance window pointed out that the console writes this
+  count three words from the check count and only one of the two was
+  measured (DP191);
+- **how many checks there are**, counted off the directory the runner
+  globs and the freeze records;
+- **how far the decision ledger has run**, taken from the ledger's own
+  highest numbered row;
+- **how many files publication produces**, classified through the
+  derivation spec, which is the same answer this prints:
+
+```
+python3 scripts/public_tree.py --list
+```
+
+**Nothing the check compares is named inside it**, and that constraint
+shaped the whole file. Every file under `scripts/` is published, and
+Rule 35 reads every file in the extracted tree that decodes as text
+(DP169), so a check written the obvious way - with the state document's
+path in it - turns this gate red before publication rather than after.
+That is Rule 35 working, not Rule 35 in the way. So the directories come
+from the derivation spec's exclusion table; the state document is **the
+one carrying its own directory's name**; and the ledger is **the
+document with the most numbered decision rows**. A record is recognised
+by being one, and a path is derived rather than written down - the idiom
+Rule 35's own generated prefixes already explain.
+
+**What counts as a claim, and what does not.** A document rewritten in
+place carries history as well as state, and a number inside a sentence
+about a measurement somebody took once is not a claim about today. The
+check count and the ledger mark are anchored by their own vocabulary.
+**The file count is anchored to the instrument that produces it:** a
+count of files in the same paragraph, or the same table row, as the
+derivation spec. Naming the instrument is the console declaring whose
+number it is, and a subject is the one thing a matcher cannot read on
+its own.
+
+**A count of files beside the name of the repository the derivation
+goes to is the third outcome, and it is a refusal rather than a
+comparison.** What that repository holds is a fact about that
+repository; nothing here measures one, and a number that names it is in
+the same position as its commit count. If a paragraph names both the
+instrument and the repository, the instrument wins - the console has
+said whose number it is.
+
+**That anchor used to be the repository, and moving it is DP190.** The
+old one was right about the problem it solved and required the number
+to stand beside the repository's name, which is what makes a reader
+take it for a fact about that repository. It became one: the change
+that added this rule also added two published files, so the extraction
+moved and the published repository did not, and the console was
+corrected to a number that was wrong about its own subject with a green
+check under it. **Adding the guard made the sentence less true**, which
+is this line's own recurring shape - a guard correct about its
+criterion and wrong about its window - arriving this time inside the
+guard written to catch it.
+
+**The cost is stated rather than left to be found.** The anchor is a
+vocabulary, so a passing sentence in the state document that counts
+checks is read as a claim and goes red. The answer is the one DP141
+already gives: a number in prose that nothing measures is not written.
+
+**A category that matches nothing at all is itself a finding**, and this
+is the half the rule exists for. Two of its first three assertions were
+green the day it was written; a number that is right today with nothing
+reading it is the same object as one that is wrong today, and a matcher
+that has quietly stopped firing reports a clean console with exactly the
+confidence of one that looked (DP87).
+
+**That branch covers less than it looks, and the check says so on every
+run rather than leaving it here.** It fires where a category has *no*
+claim, so a second count in a category that still holds a correct one -
+phrased outside the vocabulary, `paths` where the console said `files` -
+is neither read nor missed. Each category is safe today only by
+appearing exactly once. The general repair widens a matcher that reads
+the console on every run, which on this line's own precedent is a round
+of its own rather than a patch, so it is carried as an open item with
+its shape written down (DP191).
+
+**The file anchor is the spec's filename, wherever it is named.** It was
+briefly narrowed to the repo-relative path on the argument that the wide
+form fails quietly, and that argument inverts: an over-wide matcher's
+failure is a **false positive**, which is red and so loud by
+construction, and an over-narrow one's is a **false negative**, which is
+silent by construction. Measured over four shapes, wide is right on
+three; narrow is wrong on two, and one of those is a correct count
+anchored here beside a second, wrong one written with the short name -
+green, and nobody would know. **What wide costs is the fourth shape**: a
+passing sentence about that file which happens to count files is read as
+this claim and goes red. Owner ruling, 2026-08-15 (DP192). A false
+positive argues with you; a false negative does not.
+
+**In a derived tree there is no console to read.** The mode is named,
+what is therefore not asserted is named, the matcher is proved on
+positives *and* negatives assembled at run time, and the check
+**passes** - it does not skip, because a skip and a pass are the same
+green in a summary (DP182). It is not the first rule to work this way,
+and naming the family at its newest member is half the point: Rule 2's
+published copy, Rule 36's third question and Rule 38's whole criterion
+all turn on which tree they are in, and every one of them reads the mode
+off the exclusion table rather than off a constant of its own.
+
+`main()` measures the world into a flat sheet and `detect()` judges the
+sheet and nothing else, the split Rule 36 uses and for the same reason:
+every branch is then reachable from a fixture without needing a
+repository in a particular state, and a sheet that has *lost* a key is a
+finding rather than a silent pass.
+
+## Rule 40: a guard that lives in ci stays installed
+
+Some assertions this repository makes cannot be made from a check under
+`scripts/`. Rule 11 forbids a network tool there, so the two that need
+one - is this repository still private, and is the published tree still
+the extraction of a commit here - live in the workflow. Others could
+live under `scripts/` and do not, because they need a build, a fresh
+environment or a clean checkout, which is too slow to put in front of
+every commit.
+
+**What all of them share is the failure this rule is for.** A step in a
+workflow is invisible to the gate. Delete it and the gate is still
+green, every check still passes, and the assertion is simply gone -
+there is no diff a reviewer reads as a loss and no red anywhere. Rule 36
+already refuses that for exactly one member, the visibility probe. What
+was missing is that it was written **for one member rather than for a
+set**, and this line noticed that before there was a second and then
+built a third anyway, because noticing is not a mechanism.
+
+**The register lives in the check and not in the workflow**, and that is
+the whole of it. A declaration living inside the thing it declares
+cannot notice that thing being deleted: removing the step removes its
+own marker, and a keeper reading markers would enumerate nothing and
+pass. So the members are named in the check, and the workflow is read
+against them.
+
+Four questions per member, all offline. **Is it there** - a step with
+that name. **Does it still have what it needs** - its token, its
+subject, the inputs its assertion is made of; a probe with no token
+answers nothing on every run and that reads in a log exactly like an
+answer. **Can it still fail the job** - not `continue-on-error`, not
+switching errexit back off, and its asserting command not swallowed by a
+trailing `|| true`. **Does anything run it** - a workflow with no
+trigger is a watcher nobody starts.
+
+**For a member that `uses:` somebody else's action the third question is
+weaker, and is reported as weaker rather than dressed up.** There is no
+command of ours inside such a step to read, so all that can be said is
+that it is not exempted from failing; its inputs carry the weight
+instead - which is why the interpreter member requires the matrix
+binding and not merely the action's name.
+
+**Errexit is deliberately not one of the four**, and the first version
+of this rule had it. The host runs a `run:` body under `bash -e`
+already, so asking whether a step says `set -e` is a question almost
+every step passes for free while saying nothing about any of them - and
+it went red on the step that runs the gate, a single command that fails
+the job exactly as it should. What can actually stop a failure from
+reaching the job is somebody turning errexit off or swallowing an exit
+code, and those are what is read.
+
+**And two questions about the set rather than about a member.** Every
+step in every workflow must be either a registered member or named
+infrastructure, so deleting a member's row leaves its step running,
+unclassified and red, and a new step is classified by whoever adds it
+rather than by whoever notices later. **A step matches a register row by
+its exact name**, expression and all. Matching by prefix was introduced
+for a single title carrying a matrix expression, and it promptly did the
+classifying by name collision - an unregistered step called `Run the
+gate on the docs` was swallowed by the member called `Run the gate`.
+Narrowing the prefix to the name plus a space does not fix it, since the
+collision begins that way too, so the register carries whole names and
+the test is equality. And **the register's own size is
+declared in the freeze** and asserted by the check: a set whose size is
+recorded nowhere shrinks by one edit with no trace but a smaller number
+in its own output, which is the gate-shrinks-quietly shape Rule 1
+refuses one level up with `expected_check_count`. The counter-argument -
+that a declared constant can be edited in the same commit - is equally
+true there, and was accepted for the same reason: the point is not that
+it cannot be defeated, it is that defeating it takes a second, legible
+edit instead of none.
+
+**Infrastructure is the class whose absence announces itself**, because
+the steps after it stop working - delete the checkout and there are no
+files, delete the install and the first command naming the package
+fails. **That list was twice this long and both extra entries were
+wrong.** Setting up the interpreter and setting up the board's engine
+are absent in exactly the way this rule exists to catch: the runner
+ships both already, so deleting either leaves the job green while the
+three-version matrix quietly collapses onto whatever the image carries
+and the board runs on an engine nobody pinned. A matrix cannot exist
+under `scripts/` at all, which makes it about as CI-resident as an
+assertion gets. Both are members. The criterion did not change; it had
+been applied wrongly.
+
+**What this rule costs, stated here rather than found later.** A keeper
+that covers a class can be loosened for the class: one edit to the
+register narrows what is watched for every member at once, where a guard
+written per member has to be defeated one at a time. That is real, and
+it is the argument the alternative had. It was ruled for anyway, because
+the alternative was a third copy of a thing already written twice. The
+two questions about the set are what keep the cost bounded: drop a row
+and its step goes unclassified and this rule is red; drop the row and
+the step together and the declared size disagrees and it is red again.
+**The residue is three legible edits in one commit** - the row, the
+step, and the size in the freeze - which is exactly the floor
+`expected_check_count` has stood on since M0. Measured rather than
+reasoned about, and written down rather than left as a property somebody
+discovers.
+
+**One member is watched from inside itself.** The step that runs the
+gate is a member, because the assertion only the workflow makes is that
+the gate runs on a *clean checkout* on every interpreter in the matrix -
+the one runner that has ever caught a file on the disk that the index
+did not hold. But this check runs inside that step. Delete it and
+nothing here runs in CI at all, so the red arrives from a contributor's
+own pre-flight and from no CI run. That is a guard whose window does not
+contain the thing it watches, in this rule, on purpose, with no version
+of it that does not have the property.
+
+**Rule 36 is not delegated to this rule and is not weakened by it.** It
+keeps its own assertions about the probe - a token, a refusal on a
+repository that is not private, and the repository being built rather
+than one somebody typed - along with the declaration and the blast
+radius, which are not this rule's business. The overlap is presence,
+inputs and can-fail on one member. The cost is that an edit to that step
+turns two checks red and a reader may repair one and assume the other;
+both name the step and their own rule, so the second red is a direction
+rather than a puzzle. What it buys is that a red line's keeper stays
+self-contained - it does not stop working if this rule is loosened, and
+cannot be loosened by loosening the class.
+
+**In a derived tree two members do not apply**, and the rule says which
+rather than skipping quietly, the way Rules 2, 36, 38 and 39 all do.
+Both watch the repository the derivation came from, which a derived tree
+cannot ask after and carries no evidence about; both are rewritten out
+of the published workflow with their reasons attached. Which tree this
+is comes from the derivation spec's exclusion table rather than from a
+constant.
+
+`main()` measures the workflow files into a flat sheet and `detect()`
+judges the sheet and nothing else - the same split, for the same reason:
+every branch is reachable from a fixture without a repository in a
+particular state, and a sheet that has lost a key is a finding rather
+than a silent pass.
 
 ## Rule 14: activity source reads mtime only
 

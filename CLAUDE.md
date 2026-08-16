@@ -13,11 +13,12 @@ person's instance.
 | Path | What |
 |---|---|
 | `murscope/` | The package. Core is pure stdlib, offline, write-guarded |
-| `murscope/cli.py` | Entry point. `init` / `try` / `doctor` / `note` / `open` / `run` / `status --explain` / `modules` / `selftest` |
+| `murscope/cli.py` | Entry point. `murscope --help` names the subcommands this build dispatches |
 | `skill/` | The Claude Code skill. Instructions only; renders nothing (DP151) |
 | `scripts/run_checks.py` | The gate. Runs every script in `scripts/checks/` |
 | `scripts/checks/` | One script per enforced rule. Frozen zone |
 | `scripts/public_tree.py` | What the public repository is made of: withheld, rewritten, regenerated (Rule 35) |
+| `scripts/extraction_match.py` | Offline comparator: is that tree the extraction of a commit of this one? (DP182) |
 | `PUBLICATION.md` | The one irreversible thing here is a setting, not a file (Rule 36) |
 | `design/` | ADRs. `templates/doc.md` frontmatter template |
 | `.github/` | CI matrix (3.9 / 3.12 / 3.13) and the pull request template |
@@ -138,6 +139,30 @@ and its output shown; otherwise write "unverified".
   carries no evidence about its source. Rule 36's check reads the
   derivation spec to work out which tree it is in, and says which on
   every run.
+- **And something now measures the claim that goes the other way**
+  (DP182, DP194). `PUBLICATION.md` says every file over there arrived by
+  derivation, and for a whole milestone nothing checked it: Rule 2 does
+  not apply inside a derivation, and Rule 2's check had accidentally been
+  the only thing between that `main` and a hand edit. Same split as
+  above, for the same Rule 11 reason - a CI step fetches, and
+  `scripts/extraction_match.py` compares two directories with no network
+  in it, so anybody can put the same question to a clone of their own. It
+  **searches** rather than assuming `HEAD`, because the published tree is
+  behind whenever a push is held; it says how far it looked, since "no
+  match in the last N" and "no match in any" are different findings; and
+  it proves on every run that it can reject a tree that is not an
+  extraction before it is believed about one that is.
+- **And the arrangement finally has a keeper** (DP195, Rule 40). Three
+  times now an assertion has been put in the workflow because a check
+  could not hold it, and a step in a workflow is invisible to the gate -
+  delete it and everything here is still green. Rule 40 enumerates the
+  guards that live there and refuses to pass when a declared one is
+  absent, has lost an input, cannot fail the job, or sits in a workflow
+  nothing triggers. Its register is in the check rather than in the
+  workflow, because a declaration inside the thing it declares cannot
+  notice that thing being deleted. **What a keeper for a class costs is
+  in the rule rather than in a footnote**: one edit to the register
+  narrows what is watched for every member at once.
 - **No real person's name reaches what is published** (DP19, Rule 37).
   `LICENSE` carries the copyright holder and is the check's own seed:
   the spellings are generated from it, and removing the name there turns
