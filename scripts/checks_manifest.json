@@ -89,7 +89,7 @@
     "scripts/checks/zero_telemetry.py": "52c39cc2e05e818f757a136887b34df96de29696fb0b0b4078ae81366c79523a",
     "scripts/extraction_match.py": "6265dd5067c8e33b675935c93a94a4d396337cf77b85f90e067c7794d4c6a878",
     "scripts/make_toy_repos.py": "d7d9a3ded104e2f192237b4a6bf50dec30ee1724706d2d69f57af61fa1e0a1ce",
-    "scripts/public_tree.py": "edda9f9e4330e592f1bb3cbf76194964552bfe3bf5c0291c209538e6570b0aec",
+    "scripts/public_tree.py": "53058aa2f9536bb325aad3f5b3011eab64bffb6933e7a9eb6ba9e0308adba8bc",
     "scripts/run_checks.py": "59704c9974ed0b567c89d683d4c94433dd5fa53ae651626a092e09a41e824082"
   },
   "fixture_cases": {

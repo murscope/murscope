@@ -118,6 +118,13 @@ EXCLUDED = (
     ("mgmt/",
      "the owner's management console - BOOT, MGMT and the decision ledger. "
      "It is how this line is run, not what it ships (owner ruling, DP161)"),
+    ("closeout/",
+     "the closeout package - the two reports, the reusable practices and "
+     "the entrance that ties them together. It is withheld for the reason "
+     "its own README makes unavoidable: that README points into `mgmt/` "
+     "and `tasks/`, so publishing it would turn this rule's own "
+     "withheld-path half red. It is material about how the line was run "
+     "rather than about what it ships"),
     ("tasks/",
      "the milestone task books. Same reason: they are the instrument the "
      "work was commissioned with, and they name windows, stages and "
