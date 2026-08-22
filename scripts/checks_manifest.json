@@ -1,13 +1,14 @@
 {
   "algorithm": "sha256",
   "expected_check_count": 40,
-  "expected_ci_guard_count": 9,
+  "expected_ci_guard_count": 11,
   "files": {
     "murscope/fixtures/canary/NOTES.md": "f07cc172cc94d6de2b7971ab209f789f4c2f50c82693aa86beafdb49e6803bb2",
     "murscope/fixtures/canary/README.md": "62a95ae5cc112f5e59c86bc0d8deb532520580a238e574d5b7bf4b0160110ee2",
     "murscope/fixtures/ledger_cases.json": "b8c33aa07f80c6e82d9bcf6ebd75b97b293d466006ecf31030af838e58b685da",
+    "scripts/artefact_audit.py": "17358d33278c4e50c2f744d19f409308ceb5afc5e02e6f121b958976b2972860",
     "scripts/checks/a_degraded_note_is_retried_never_held.py": "6150e2352bf053642ed17d9f9e31f12a12ffaa12c8c65825c52010feb3c230e2",
-    "scripts/checks/a_guard_that_lives_in_ci_stays_installed.py": "61ca5e7a28d03b4096498e0b2814475fdb8e9dce9803fba4097a52e01e8428b3",
+    "scripts/checks/a_guard_that_lives_in_ci_stays_installed.py": "ab2fb306c661fcac08fbfcfc7d6de896ecf27f52c5a066a9615829c4090c1f01",
     "scripts/checks/a_machine_acting_consent_says_so_on_screen.py": "b9d9bbf7cac7d9c5cbe4a0b828fe6fde559db2f1a7638ac234224781330a6d30",
     "scripts/checks/a_note_adapter_sends_only_what_the_disclosure_declares.py": "ba73b2844e23b5e7f4911d7eff1d4cd5c954ca4caadf0d8d0b00ec7e2ad15a5f",
     "scripts/checks/a_read_window_and_its_permits_stay_paired.py": "ed96ed690cdb9a6f6eee8565e9acc5a10a21ec99d8f92b96fe5eadbb2770ac2e",
@@ -86,7 +87,7 @@
     "scripts/checks/the_terminal_table_is_measured_in_cells.py": "88bce713aae315dc14402a7dbce1d05fd0780be5f2886d2f49100996e04f24aa",
     "scripts/checks/the_timer_collects_and_cannot_send.py": "228f2589d505dede66adb1dc254dbb3be96e786082d43e04088e926c14bdb498",
     "scripts/checks/zero_telemetry.py": "52c39cc2e05e818f757a136887b34df96de29696fb0b0b4078ae81366c79523a",
-    "scripts/extraction_match.py": "f7c3289dcfa77835798dcf79c25d80074ddf6d37a88297fee01db5ec5c8bcb34",
+    "scripts/extraction_match.py": "6265dd5067c8e33b675935c93a94a4d396337cf77b85f90e067c7794d4c6a878",
     "scripts/make_toy_repos.py": "d7d9a3ded104e2f192237b4a6bf50dec30ee1724706d2d69f57af61fa1e0a1ce",
     "scripts/public_tree.py": "edda9f9e4330e592f1bb3cbf76194964552bfe3bf5c0291c209538e6570b0aec",
     "scripts/run_checks.py": "59704c9974ed0b567c89d683d4c94433dd5fa53ae651626a092e09a41e824082"

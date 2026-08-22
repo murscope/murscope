@@ -308,6 +308,37 @@ GUARDS = (
                "file that arrives on disk without a distribution owning it "
                "looks fine in a zip (DP88)",
     },
+    {
+        "key": "extras-alone-message",
+        "step": "Prove murscope-ai alone says what to run",
+        "trees": BOTH,
+        "requires": ("murscope-ai", "--no-index",
+                     "pip install 'murscope[ai]'",
+                     "assert len(shapes) == 1"),
+        "asserts": ("/tmp/aionlyenv/bin/python",),
+        "why": "a stranger who installs the extras distribution alone meets "
+               "a sentence naming what happened and what to run, rather than "
+               "an ImportError about an internal name at an unknown "
+               "location. The guard is duplicated in all seven adapters "
+               "because a shared module beside them would be a sibling "
+               "import (Rule 16) and the core is the thing that is absent, "
+               "so this reads every one of the seven and asserts they say "
+               "the same thing - a message nothing exercises rots at the "
+               "next refactor (DP88, DP172)",
+    },
+    {
+        "key": "artefact-audit",
+        "step": "Read what a stranger downloads",
+        "trees": BOTH,
+        "requires": ("scripts/artefact_audit.py", "--build"),
+        "asserts": ("scripts/artefact_audit.py --build",),
+        "why": "Rule 35 reads the tree the derivation produces and nothing "
+               "read the artefacts built from the same tree, where not one "
+               "of its rewrites is applied - a third publication channel no "
+               "check governed. A licence file was once inside the wheel "
+               "while being invisible to every check, because the checks "
+               "list the index and the build reads the disk (DP171, DP176)",
+    },
 )
 
 REQUIRED_KEYS = ("Tree", "Workflows", "Steps-seen", "Steps-infrastructure",

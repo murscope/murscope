@@ -222,3 +222,121 @@ jobs:
           print('[ai] install: network present, and it loads when named')
           "
           /tmp/aienv/bin/murscope selftest
+
+      # DP172's condition, and it binds at the same moment as the one
+      # below: a stranger who types `pip install murscope-ai` gets seven
+      # provider modules with nothing under them. `import murscope`
+      # *succeeds* - DP88 requires this distribution to own no
+      # `__init__.py`, so the directory resolves as a namespace package
+      # and says nothing is wrong - and the failure used to arrive later,
+      # from a provider, as `ImportError: cannot import name 'consent'
+      # from 'murscope' (unknown location)`. An internal name, a location
+      # that does not exist, and no remedy in it.
+      #
+      # **A message nothing exercises is a message that rots at the next
+      # refactor**, which is why this step exists rather than the guard
+      # being trusted where it is written. The guard is duplicated in all
+      # seven adapters deliberately - a shared module beside them would be
+      # a sibling import, which Rule 16 refuses, and the core is the very
+      # thing that is absent - so this reads every one of the seven and
+      # asserts they say the *same* thing, which is the half that catches
+      # a copy falling behind.
+      #
+      # The install is from the wheel the step above built, `--no-index`
+      # for the same reason it is: this distribution is not on any index,
+      # and a stranger's experience of it has to be reproduced from an
+      # artefact rather than described.
+      - name: Prove murscope-ai alone says what to run
+        run: |
+          set -eux
+          python3 -m venv /tmp/aionlyenv
+          /tmp/aionlyenv/bin/pip install --force-reinstall --no-index \
+            --find-links "$GITHUB_WORKSPACE/dist" murscope-ai
+          mkdir -p /tmp/outside && cd /tmp/outside
+          /tmp/aionlyenv/bin/python - <<'PY'
+          import importlib
+          import importlib.metadata
+
+          # The one command that installs both halves at the pinned
+          # version, and the whole point of the message.
+          REMEDY = "pip install 'murscope[ai]'"
+          DISTRIBUTION = "murscope-ai"
+
+          # **Asked of the installed distribution rather than written
+          # down.** A seven-name literal here was an assertion about the
+          # seven adapters that existed when it was typed: an eighth
+          # arriving without the guard was never imported, this step
+          # printed `all 7 provider(s) refused with one message` and
+          # exited 0, and what a stranger met on the eighth was
+          # `cannot import name 'consent' from 'murscope' (unknown
+          # location)` - DP172's original defect, verbatim, under a green
+          # assertion. Rule 37 generates its spelling space and Rule 40
+          # registers its members for this reason; a list of what exists
+          # today is a list that goes quiet on what arrives tomorrow.
+          #
+          # The `_` filter is the loader's own convention, not a new one:
+          # murscope.providers.available() drops every name starting with
+          # an underscore, so a module that is not an adapter is not
+          # counted as one here either.
+          PROVIDERS = sorted(
+              path.name[:-3]
+              for path in (importlib.metadata.files(DISTRIBUTION) or ())
+              if path.parent.as_posix() == "murscope/providers"
+              and path.name.endswith(".py")
+              and not path.name.startswith("_"))
+          assert PROVIDERS, (
+              "the installed %s names no provider module, so every "
+              "assertion below would be made about nothing" % DISTRIBUTION)
+          print("%d provider(s) read off the installed %s: %s"
+                % (len(PROVIDERS), DISTRIBUTION, ", ".join(PROVIDERS)))
+
+          import murscope
+          assert getattr(murscope, "__file__", None) is None, murscope.__file__
+          print("import murscope: succeeds and tells a stranger nothing")
+
+          shapes = set()
+          for name in PROVIDERS:
+              dotted = "murscope.providers." + name
+              try:
+                  importlib.import_module(dotted)
+              except ImportError as exc:
+                  text = str(exc)
+              else:
+                  raise SystemExit(
+                      "%s imported with no base package under it, so the "
+                      "message DP172 is about was never reached" % dotted)
+              assert dotted in text, (dotted, text)
+              assert REMEDY in text, (dotted, text)
+              assert "murscope-ai" in text, (dotted, text)
+              shapes.add(text.replace(dotted, "<provider>"))
+          assert len(shapes) == 1, shapes
+          print("all %d provider(s) refused with one message: %s"
+                % (len(PROVIDERS), shapes.pop()))
+          PY
+
+      # DP171's condition. Rule 35 reads the tree `scripts/public_tree.py`
+      # produces; the artefacts a stranger downloads are built from the
+      # source tree, so **not one of the derivation's rewrites is applied
+      # to them**, and the index is a third publication channel no check
+      # governs. M5 produced one instance: a licence file was inside the
+      # wheel while being invisible to every check, because every check
+      # lists the tree with `git ls-files` and the build reads the disk
+      # (DP176).
+      #
+      # It is a step rather than a check for the reason the two above it
+      # are: it needs a build, which is too slow to put in front of every
+      # commit. **The reading is not this step's**, though - the command
+      # takes a directory and reaches no network, so anybody with a clone
+      # and an artefact can put the same question to it offline, which is
+      # what makes this an assertion rather than a ritual.
+      #
+      # `--build` rather than reading the `dist/` above, and the reason is
+      # coverage: an sdist carries what a wheel does not - the readme as a
+      # file of its own, the packaging metadata's source listing - and a
+      # stranger can download either. Built into /tmp, so this leaves the
+      # workspace exactly as it found it.
+      - name: Read what a stranger downloads
+        run: |
+          set -eux
+          rm -rf /tmp/artefact-audit
+          python3 scripts/artefact_audit.py --build /tmp/artefact-audit

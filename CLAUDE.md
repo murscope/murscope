@@ -19,6 +19,7 @@ person's instance.
 | `scripts/checks/` | One script per enforced rule. Frozen zone |
 | `scripts/public_tree.py` | What the public repository is made of: withheld, rewritten, regenerated (Rule 35) |
 | `scripts/extraction_match.py` | Offline comparator: is that tree the extraction of a commit of this one? (DP182) |
+| `scripts/artefact_audit.py` | Offline reader of what a stranger downloads - the built wheels and sdists, where no rewrite is applied (DP171) |
 | `PUBLICATION.md` | The one irreversible thing here is a setting, not a file (Rule 36) |
 | `design/` | ADRs. `templates/doc.md` frontmatter template |
 | `.github/` | CI matrix (3.9 / 3.12 / 3.13) and the pull request template |
@@ -163,6 +164,20 @@ and its output shown; otherwise write "unverified".
   notice that thing being deleted. **What a keeper for a class costs is
   in the rule rather than in a footnote**: one edit to the register
   narrows what is watched for every member at once.
+- **And two conditions that bound at a release now bind on every push**
+  (DP171, DP172). A guard that runs only at an upload runs once a release
+  and has never been seen to work, which is what DP186 says about these
+  two by name. Nothing new had to be scheduled: CI builds both
+  distributions on every run already, so `scripts/artefact_audit.py`
+  reads what a stranger downloads where it is being built - every member
+  of every wheel and sdist that decodes as text, against the halves that
+  mean something for an upload - and a stranger who installs the extras
+  distribution on its own now meets a sentence naming what happened and
+  what to run, reproduced from that same wheel by a step beside it rather
+  than described. Both steps are members of Rule 40's register. **The
+  intersection of the derivation's rewrites with what reaches an artefact
+  is measured on every run and never carried**: it is one on this tree,
+  and that is a property of this version rather than of the arrangement.
 - **No real person's name reaches what is published** (DP19, Rule 37).
   `LICENSE` carries the copyright holder and is the check's own seed:
   the spellings are generated from it, and removing the name there turns

@@ -1775,6 +1775,26 @@ run the extracted tree's own gate: that is the pre-publication audit
 DP160 puts before the repository is created. That audit has now been run
 once, and what it found is in this rule and in Rules 36 and 37.
 
+**And it says nothing about the artefacts built from this tree**, which
+is a third publication channel rather than a corner of this one. A wheel
+and an sdist are built from the source, so **not one of the rewrites
+above is applied to them** - a sentence repaired for the published tree
+is still wrong inside an upload, and M5 shipped a licence file that was
+in the wheel while being invisible to every check, because the checks
+list the index and the build reads the disk (DP176). `scripts/artefact_audit.py`
+points these same readers at what a stranger downloads: it opens each
+built distribution, reads every member that decodes as text, and applies
+the halves that mean something for an upload. It lives beside the
+extraction comparator rather than under `scripts/checks/` because it
+needs a build, and its step is a member of Rule 40's register (DP171).
+Two things it does differently, both forced by what an artefact is. The
+reader is chosen by what the member is, which is what keeps the ledger
+paths in `murscope/fingerprints.py` - product data, and a shipped file -
+from reading as six findings. And the intersection it reports, of
+rewrites against what reaches an artefact, is **measured on every run
+rather than carried**: DP171 bounded it at one for 0.1.0 and said in as
+many words that the number is a property of that version.
+
 Nothing here creates a repository, pushes anything or tags anything.
 DP160 puts all three behind an owner ruling and that audit.
 
@@ -1904,12 +1924,32 @@ out and the rule has no seed at all; leave `Copyright (c) 2026` and
 remove only the name, and the generated spellings stop firing on the one
 file they certainly should.
 
-Two limits worth writing down. A name inside a base64 fixture is data by
-construction and is not read. And the seed is only as good as `LICENSE`:
-a holder written there in one script and used in the package in another
-is a gap this cannot close.
+Limits worth writing down, and deliberately not counted: the count here
+said two while the paragraph after it named a third, no check reads a
+number in this file, and a hand-written number is a claim (DP25). A name
+inside a base64 fixture is data by construction and is not read. And the
+seed is only as good as `LICENSE`: a holder written there in one script
+and used in the package in another is a gap this cannot close.
 
-A third limit was found the hard way and is now Rule 38's: this rule
+**The half of the seeding whose whole job is a second person's name is
+proved by nothing** (DP205). The seeds are the copyright holder plus
+this tree's authorship, and the only known positive available anywhere
+this rule runs is a licence - which names the holder. So the proof
+exercises holder-derived spellings and never the authorship-derived
+ones: over the published tree, where the positive is the root `LICENSE`,
+and inside a built artefact, where it is the licence that artefact
+carries. **And the two ways the authorship seed can fail are
+asymmetric.** An authorship that cannot be read at all is a refusal, and
+a loud one. An authorship that comes back *shorter* - a shallow clone, a
+single-branch fetch, a rewritten history - narrows the space by exactly
+as much and says nothing, and every file still reads clean.
+`scripts/artefact_audit.py`, which seeds itself the same way, prints the
+two seed counts separately rather than only their total, and measures
+how many generated spellings the positive can never exercise, so the
+narrowing is on the page. Neither number is compared against a baseline:
+there is none, and a baseline would be a check.
+
+A further limit was found the hard way and is now Rule 38's: this rule
 reads files, and a commit is not a file.
 
 ## Rule 38: the published history carries no personal address
@@ -2086,6 +2126,16 @@ the extraction of a commit here - live in the workflow. Others could
 live under `scripts/` and do not, because they need a build, a fresh
 environment or a clean checkout, which is too slow to put in front of
 every commit.
+
+**Two of them bind at an upload rather than at a commit, and that is why
+they are here at all.** A guard that runs only at a release runs once a
+release and has never been seen to work, which is DP182's shape before
+its assertion existed. So neither waits for the moment: the artefacts
+are built on every run already, so what a stranger downloads is read
+where it is being built (DP171), and a stranger's experience of the
+extras distribution installed on its own is reproduced from that same
+wheel rather than described (DP172). Both were conditions written down
+with nothing reading them, which DP186 says is a condition nobody has.
 
 **What all of them share is the failure this rule is for.** A step in a
 workflow is invisible to the gate. Delete it and the gate is still

@@ -21,9 +21,43 @@ quietly put a tested and an untested provider in one column (DP89).
 """
 from __future__ import annotations
 
+import importlib.util
 import json
 import urllib.error
 import urllib.request
+
+# **The first thing a stranger meets when this distribution is installed on
+# its own** (DP172). `murscope-ai` declares no dependency on `murscope` -
+# deliberately, because the base package's `ai` extra points this way and
+# declaring both would close a cycle - so `pip install murscope-ai` puts
+# these seven modules on a disk with nothing under them. `import murscope`
+# then *succeeds*: DP88 requires this distribution to own no `__init__.py`,
+# so the directory resolves as a namespace package and tells the reader
+# nothing is wrong. The failure used to arrive one line below this one, as
+# `ImportError: cannot import name 'consent' from 'murscope' (unknown
+# location)` - an internal name, a location that does not exist, and no
+# remedy anywhere in it.
+#
+# **Duplicated in all seven adapters deliberately, and asserted rather than
+# trusted.** There is nowhere in this distribution for a shared copy to
+# live: a module beside these would be a sibling import, which Rule 16
+# refuses and is right to, and the core is the very thing that is absent.
+# It is the same trade `_opener()` already makes here (DP116). The seven
+# copies are byte for byte identical - `__name__` is what varies at run
+# time and not the text - and CI imports every one of them in an
+# environment with no base package and reads what each one says.
+#
+# `find_spec` rather than an import: the question is whether the base
+# distribution is on the disk, and importing would answer a different one -
+# a `consent` that is present and raises for a reason of its own would be
+# reported here as an absent base, which is a wrong sentence delivered
+# confidently.
+if importlib.util.find_spec("murscope.consent") is None:
+    raise ImportError(
+        "%s needs the murscope base package and it is not installed: this "
+        "is murscope-ai, which carries murscope's network providers and not "
+        "murscope itself, so run `pip install 'murscope[ai]'` - one command "
+        "that installs both halves at the pinned version." % __name__)
 
 from .. import consent as consent_module
 from .. import keys, outbound

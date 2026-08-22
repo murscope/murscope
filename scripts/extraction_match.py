@@ -63,6 +63,19 @@ by the spec as it stood at the commit that produced it, and asking a
 later spec what an earlier commit extracts to is a different question
 with a similar-looking answer.
 
+**The candidate must be a tree nothing has been imported in.** Running
+any Python inside a clone leaves `__pycache__` directories beside the
+sources, those files are in no extraction, and the search then exhausts
+the history and prints `no match in any commit` - the strongest sentence
+here, the one reserved for a finding about the published repository -
+about a tree that is in fact derived perfectly. The stated audience is
+anybody holding a clone of their own, which is exactly the person who
+runs the gate in that clone first and then asks this question of the same
+directory. Clone again, or check the tree out somewhere nothing has run.
+The extraction this file writes is protected from the same bytecode by
+`-B` and `PYTHONDONTWRITEBYTECODE`; a directory somebody else made is
+not, and nothing here can reach back and make it so.
+
 Pure stdlib. Makes no network call. Writes only into a throwaway
 directory it creates, or the one it is given.
 
